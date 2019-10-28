@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+  web:
+    container_name: lfp-api-web
+    image: lfp-api-web
+    build: ./web
+    ports:
+      - ${APP_PORT}:80
+    volumes:
+      - ${APP_DIR}:/home:ro
+    links:
+      - php
+    network_mode: bridge
+
+  php:
+    container_name: lfp-api-php
+    image: lfp-api-php
+    build: ./php
+    links:
+      - dbserver
+    volumes:
+      - ${APP_DIR}:/home:cached
+    network_mode: bridge
+
+  dbserver:
+    container_name: lfp-api-db
+    image: lfp-api-db
+    build: ./dbserver
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - ${APP_DB}:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    network_mode: bridge

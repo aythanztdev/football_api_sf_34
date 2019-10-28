@@ -1,0 +1,8 @@
+###> Local DB
+_db/*
+!_db/.gitkeep
+###< Local DB
+
+###> Docker
+.env
+###< Docker
