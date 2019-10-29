@@ -1,0 +1,7 @@
+clubs:
+  type: rest
+  resource: App\Controller\ClubController
+
+players:
+  type: rest
+  resource: App\Controller\PlayerController

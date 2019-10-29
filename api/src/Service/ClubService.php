@@ -6,24 +6,23 @@ use App\Entity\Club;
 use App\Repository\ClubRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
-class ClubService
+class ClubService extends AbstractService
 {
-    private $entityManager;
     private $clubRepository;
 
     public function __construct(
         EntityManagerInterface $entityManager,
-        ClubRepository $clubRepository
+        ClubRepository $playerRepository
     )
     {
-        $this->entityManager = $entityManager;
-        $this->clubRepository = $clubRepository;
+        $this->clubRepository = $playerRepository;
+        parent::__construct($entityManager);
     }
 
-    public function save(Club $club)
+    public function persistAndSave(Club $club)
     {
         $this->entityManager->persist($club);
-        $this->entityManager->flush();
+        $this->save();
     }
 
     public function getAll()

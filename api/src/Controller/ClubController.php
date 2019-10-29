@@ -5,59 +5,112 @@ namespace App\Controller;
 use App\Entity\Club;
 use App\Form\ClubType;
 use App\Service\ClubService;
-use FOS\RestBundle\Controller\AbstractFOSRestController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class ClubController extends AbstractFOSRestController
 {
     private $clubService;
+    private $serializer;
 
-    public function __construct(ClubService $clubService)
+    public function __construct(
+        ClubService $clubService,
+        SerializerInterface $serializer
+    )
     {
         $this->clubService = $clubService;
+        $this->serializer = $serializer;
     }
 
-    public function postClubAction(Request $request)
-    {
-        $form = $this->createForm(ClubType::class, new Club());
-        $form->submit($request->request->all());
-
-        if (!$form->isValid()) {
-            return $this->handleView($this->view($form));
-        }
-
-        $this->clubService->save($form->getData());
-
-        return $this->handleView($this->view($form, Response::HTTP_CREATED));
-    }
-
-    public function getClubAction(Club $club)
-    {
-        return $this->handleView($this->view($club));
-    }
-
+    /**
+     * @return Response
+     */
     public function getClubsAction()
     {
         $clubs = $this->clubService->getAll();
 
-        return $this->handleView($this->view($clubs));
+        $playersSerialized = $this->serializer->serialize($clubs, 'json', ['groups' => ['club']]);
+        return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
     }
 
-    public function putClubAction($slug)
-    {}
-
-    public function patchClubAction(Request $request, Club $club)
+    /**
+     * @param Club $club
+     *
+     * @return Response
+     */
+    public function getClubAction(Club $club)
     {
-        $form = $this->createForm(ClubType::class, $club);
-        $form->submit($request->request->all(), false);
+        $playersSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
+        return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function postClubAction(Request $request)
+    {
+        $form = $this->clubForm($request, new Club());
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
         }
 
-        $this->clubService->save($form->getData());
+        $this->clubService->persistAndSave($form->getData());
 
-        return $this->handleView($this->view($form, Response::HTTP_OK));
+        $playersSerialized = $this->serializer->serialize($form->getData(), 'json', ['groups' => ['club']]);
+        return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
+    }
+
+    /**
+     * @param Request $request
+     * @param Club $club
+     *
+     * @return Response
+     */
+    public function putClubAction(Request $request, Club $club)
+    {
+        $form = $this->clubForm($request, $club);
+
+        if (!$form->isValid()) {
+            return $this->handleView($this->view($form));
+        }
+
+        $this->clubService->save();
+
+        $playersSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
+        return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
+    }
+
+    /**
+     * @param Request $request
+     * @param Club $club
+     *
+     * @return Response
+     */
+    public function patchClubAction(Request $request, Club $club)
+    {
+        $form = $this->clubForm($request, $club);
+
+        if (!$form->isValid()) {
+            return $this->handleView($this->view($form));
+        }
+
+        $this->clubService->save();
+
+        $playersSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
+        return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
+    }
+
+    private function clubForm(Request $request, Club $club)
+    {
+        $form = $this->createForm(ClubType::class, $club);
+        $form->submit($request->request->all());
+
+        return $form;
     }
 }

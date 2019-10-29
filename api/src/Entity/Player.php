@@ -16,7 +16,7 @@ class Player
 {
     use TimeTrait;
 
-    const TYPE_PLAYER = 'PROFESSIONAL';
+    const TYPE_PROFESSIONAL = 'PROFESSIONAL';
     const TYPE_JUNIOR = 'JUNIOR';
 
     const POSITION_GOALKEEPER = 'GOALKEEPER';
@@ -28,64 +28,82 @@ class Player
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"member"})
+     * @Groups({"player", "club"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Groups({"member"})
+     * @Groups({"player", "club"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank
-     * @Groups({"member"})
+     * @Groups({"player", "club"})
      */
     private $birthday;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"member"})
+     * @Assert\NotBlank
+     * @Assert\Choice(callback="getPositions")
+     * @Groups({"player", "club"})
      */
     private $position;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"member"})
+     * @Assert\NotBlank
+     * @Groups({"player", "club"})
      */
     private $type;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
-     * @Groups({"member"})
+     * @Assert\NotBlank
+     * @Groups({"player", "club"})
      */
     private $salary;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Club", inversedBy="players")
+     * @Assert\NotBlank
+     * @Groups({"player"})
      */
     private $club;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"member"})
+     * @Groups({"player", "club"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"member"})
+     * @Groups({"player", "club"})
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"member"})
+     * @Groups({"player"})
      */
     private $deletedAt;
+
+    /* START DONT REMOVE */
+    public static function getPositions()
+    {
+        return [self::POSITION_GOALKEEPER, self::POSITION_DEFENDER, self::POSITION_MIDFIELD, self::POSITION_FORWARD];
+    }
+
+    public static function getTypes()
+    {
+        return [self::TYPE_PROFESSIONAL, self::TYPE_JUNIOR];
+    }
+    /* FINISH DONT REMOVE */
 
     public function getId()
     {
@@ -150,5 +168,15 @@ class Player
         $this->salary = $salary;
 
         return $this;
+    }
+
+    public function getClub()
+    {
+        return $this->club;
+    }
+
+    public function setClub($club)
+    {
+        $this->club = $club;
     }
 }

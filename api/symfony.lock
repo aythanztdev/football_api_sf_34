@@ -114,6 +114,9 @@
     "psr/simple-cache": {
         "version": "1.0.1"
     },
+    "sensio/framework-extra-bundle": {
+        "version": "v3.0.29"
+    },
     "symfony/cache": {
         "version": "v3.4.32"
     },
@@ -252,6 +255,9 @@
     "symfony/stopwatch": {
         "version": "v3.4.32"
     },
+    "symfony/templating": {
+        "version": "v3.4.32"
+    },
     "symfony/translation": {
         "version": "3.3",
         "recipe": {
@@ -266,6 +272,9 @@
         ]
     },
     "symfony/validator": {
+        "version": "v3.4.32"
+    },
+    "symfony/var-dumper": {
         "version": "v3.4.32"
     },
     "symfony/yaml": {

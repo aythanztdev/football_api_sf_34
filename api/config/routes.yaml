@@ -1,6 +1,7 @@
 # This file is the entry point to configure your own HTTP routes.
 # Files in the routes/ subdirectory configure the routes for your dependencies.
 
-clubs:
-  type: rest
-  resource: App\Controller\ClubController
+rest :
+  type : rest
+  resource : "routes_rest.yaml"
+  prefix : /api
