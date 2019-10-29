@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Coach;
 use App\Form\CoachType;
 use App\Service\CoachService;
+use App\Service\ValidateService;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\Form\FormError;
@@ -17,20 +18,24 @@ use Symfony\Component\Serializer\SerializerInterface;
 class CoachController extends AbstractFOSRestController
 {
     private $coachService;
+    private $validateService;
     private $serializer;
 
     /**
      * CoachController constructor.
      *
      * @param CoachService $coachService
+     * @param ValidateService $validateService
      * @param SerializerInterface $serializer
      */
     public function __construct(
         CoachService $coachService,
+        ValidateService $validateService,
         SerializerInterface $serializer
     )
     {
         $this->coachService = $coachService;
+        $this->validateService = $validateService;
         $this->serializer = $serializer;
     }
 
@@ -70,7 +75,7 @@ class CoachController extends AbstractFOSRestController
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->coachService->customValidations($form->getData());
+        $customErrors = $this->validateService->coachValidation($form->getData());
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
@@ -90,14 +95,13 @@ class CoachController extends AbstractFOSRestController
      */
     public function putCoachAction(Request $request, Coach $coach)
     {
-        $lastClub = $coach->getClub();
         $form = $this->coachForm($request, $coach);
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->coachService->customValidations($coach, $lastClub);
+        $customErrors = $this->validateService->coachValidation($coach);
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
@@ -118,14 +122,13 @@ class CoachController extends AbstractFOSRestController
      */
     public function patchCoachAction(Request $request, Coach $coach)
     {
-        $lastClub = $coach->getClub();
         $form = $this->coachForm($request, $coach, false);
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->coachService->customValidations($coach, $lastClub);
+        $customErrors = $this->validateService->coachValidation($coach);
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }

@@ -14,7 +14,7 @@ cp dist.env .env
 
 Build
 ```
-docker-compose build
+docker-compose build --pull
 docker-compose up -d
 ```
 

@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Service\PlayerService;
+use App\Service\ValidateService;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
@@ -18,20 +19,24 @@ use Symfony\Component\Serializer\SerializerInterface;
 class PlayerController extends AbstractFOSRestController
 {
     private $playerService;
+    private $validateService;
     private $serializer;
 
     /**
      * PlayerController constructor.
      *
      * @param PlayerService $playerService
+     * @param ValidateService $validateService
      * @param SerializerInterface $serializer
      */
     public function __construct(
         PlayerService $playerService,
+        ValidateService $validateService,
         SerializerInterface $serializer
     )
     {
         $this->playerService = $playerService;
+        $this->validateService = $validateService;
         $this->serializer = $serializer;
     }
 
@@ -71,7 +76,7 @@ class PlayerController extends AbstractFOSRestController
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->playerService->customValidations($form->getData());
+        $customErrors = $this->validateService->playerValidation($form->getData());
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
@@ -98,7 +103,7 @@ class PlayerController extends AbstractFOSRestController
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->playerService->customValidations($player, $lastClub);
+        $customErrors = $this->validateService->playerValidation($player, $lastClub);
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
@@ -126,7 +131,7 @@ class PlayerController extends AbstractFOSRestController
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->playerService->customValidations($player, $lastClub);
+        $customErrors = $this->validateService->playerValidation($player, $lastClub);
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }

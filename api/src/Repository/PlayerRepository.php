@@ -21,33 +21,6 @@ class PlayerRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Player::class);
     }
-    // /**
-    //  * @return Player[] Returns an array of Player objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-    /*
-    public function findOneBySomeField($value): ?Player
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 
     /**
      * @param Club $club
@@ -79,12 +52,7 @@ class PlayerRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('p');
         return $qb
             ->select('COUNT(p.id)')
-            ->andWhere(
-                $qb->expr()->andX(
-                    'p.club = :club',
-                    'p.type = :type'
-                )
-            )
+            ->andWhere('p.club = :club AND p.type = :type')
             ->setParameter('club', $club)
             ->setParameter('type', $type)
             ->getQuery()
