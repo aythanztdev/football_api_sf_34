@@ -52,5 +52,4 @@ class PlayerService extends AbstractService
     {
         return $this->playerRepository->findAll();
     }
-
 }

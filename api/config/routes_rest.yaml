@@ -5,3 +5,7 @@ clubs:
 players:
   type: rest
   resource: App\Controller\PlayerController
+
+coachs:
+  type: rest
+  resource: App\Controller\CoachController

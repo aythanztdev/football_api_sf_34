@@ -71,7 +71,7 @@ class Player
     private $type;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
+     * @ORM\Column(type="decimal", precision=10, scale=2)
      * @Groups({"player", "club"})
      */
     private $salary = 0;
@@ -106,92 +106,95 @@ class Player
     {
         return [self::TYPE_PROFESSIONAL, self::TYPE_JUNIOR];
     }
-    /* FINISH DONT REMOVE */
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName($name)
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail($email)
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
-    public function getBirthday()
+    public function getBirthday(): ?\DateTimeInterface
     {
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTimeInterface $birthday)
+    public function setBirthday(\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
 
         return $this;
     }
 
-    public function getPosition()
+    public function getPosition(): ?string
     {
         return $this->position;
     }
 
-    public function setPosition($position)
+    public function setPosition(string $position): self
     {
         $this->position = $position;
 
         return $this;
     }
 
-    public function getType()
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType($type)
+    public function setType(string $type): self
     {
         $this->type = $type;
 
         return $this;
     }
 
-    public function getSalary()
+    public function getSalary(): ?float
     {
         return (float)$this->salary;
     }
 
-    public function setSalary($salary)
+    public function setSalary(float $salary): self
     {
         $this->salary = $salary;
 
         return $this;
     }
 
-    public function getClub()
+    public function getClub(): ?Club
     {
         return $this->club;
     }
 
-    public function setClub($club)
+    public function setClub(?Club $club): self
     {
         $this->club = $club;
+
+        return $this;
     }
+    /* FINISH DONT REMOVE */
+
 }

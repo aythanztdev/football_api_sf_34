@@ -44,11 +44,10 @@ class Coach
      * @Assert\NotBlank
      * @Groups({"coach", "club"})
      */
-    private $salary;
+    private $salary = 0;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Club", inversedBy="coach")
-     * @Assert\NotBlank
+     * @ORM\OneToOne(targetEntity="App\Entity\Club", inversedBy="coach", cascade={"persist"})
      * @Groups({"coach"})
      */
     private $club;
@@ -68,53 +67,53 @@ class Coach
      */
     private $deletedAt;
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function setName($name)
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getSalary()
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getSalary(): ?float
     {
         return (float)$this->salary;
     }
 
-    public function setSalary($salary)
+    public function setSalary(float $salary): self
     {
         $this->salary = $salary;
 
         return $this;
     }
 
-    public function getClub()
+    public function getClub(): ?Club
     {
         return $this->club;
     }
 
-    public function setClub(Club $club)
+    public function setClub(?Club $club): self
     {
         $this->club = $club;
 

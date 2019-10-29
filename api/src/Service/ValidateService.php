@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Service;
-
 
 use App\Entity\Club;
 use App\Entity\Coach;
@@ -56,7 +54,9 @@ class ValidateService
     {
         $errors = [];
 
-        if ($coach->getClub() instanceof Club) {
+        $club = $coach->getClub();
+        if ($club instanceof Club) {
+            $club->setCoach($coach);
             $errorsPlayersClub = $this->validateCoachClubConditions($coach);
             $errors = array_merge($errors, $errorsPlayersClub);
         }

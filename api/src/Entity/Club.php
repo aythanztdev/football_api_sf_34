@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Traits\TimeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -47,7 +48,7 @@ class Club
     private $players;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Coach", mappedBy="club")
+     * @ORM\OneToOne(targetEntity="App\Entity\Coach", mappedBy="club", cascade={"persist"})
      * @Groups({"club"})
      */
     private $coach;
@@ -70,87 +71,44 @@ class Club
         $this->players = new ArrayCollection();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
+    public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBudget()
+    public function getBudget(): ?float
     {
         return (float)$this->budget;
     }
 
-    /**
-     * @param mixed $budget
-     */
-    public function setBudget($budget)
+    public function setBudget(float $budget): self
     {
         $this->budget = $budget;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * @return Collection|Player[]
      */
-    public function getPlayers()
+    public function getPlayers(): Collection
     {
         return $this->players;
     }
 
-    /**
-     * @param mixed $players
-     */
-    public function setPlayers($players)
-    {
-        $this->players = $players;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCoach()
-    {
-        return $this->coach;
-    }
-
-    /**
-     * @param mixed $coach
-     */
-    public function setCoach($coach)
-    {
-        $this->coach = $coach;
-    }
-
-    public function addPlayer(Player $player)
+    public function addPlayer(Player $player): self
     {
         if (!$this->players->contains($player)) {
             $this->players[] = $player;
@@ -160,7 +118,7 @@ class Club
         return $this;
     }
 
-    public function removePlayer(Player $player)
+    public function removePlayer(Player $player): self
     {
         if ($this->players->contains($player)) {
             $this->players->removeElement($player);
@@ -173,4 +131,21 @@ class Club
         return $this;
     }
 
+    public function getCoach(): ?Coach
+    {
+        return $this->coach;
+    }
+
+    public function setCoach(?Coach $coach): self
+    {
+        $this->coach = $coach;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newClub = null === $coach ? null : $this;
+        if ($coach->getClub() !== $newClub) {
+            $coach->setClub($newClub);
+        }
+
+        return $this;
+    }
 }

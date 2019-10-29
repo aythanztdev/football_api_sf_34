@@ -42,7 +42,7 @@ class CoachController extends AbstractFOSRestController
     /**
      * @return JsonResponse
      */
-    public function getCoachsAction()
+    public function getCoachesAction()
     {
         $coachs = $this->coachService->getAll();
 
