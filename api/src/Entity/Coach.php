@@ -32,6 +32,14 @@ class Coach
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Email
+     * @Groups({"coach", "club"})
+     */
+    private $email;
+
+    /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
      * @Assert\NotBlank
      * @Groups({"coach", "club"})
@@ -71,6 +79,18 @@ class Coach
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
     }
 
     public function setName($name)

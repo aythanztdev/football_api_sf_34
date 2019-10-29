@@ -7,6 +7,7 @@ use App\Entity\Player;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,6 +23,7 @@ class PlayerType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('email', EmailType::class)
             ->add('birthday', DateTimeType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',

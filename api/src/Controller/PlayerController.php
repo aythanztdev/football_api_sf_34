@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Player;
 use App\Form\PlayerType;
 use App\Service\PlayerService;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -60,7 +61,7 @@ class PlayerController extends AbstractFOSRestController
      * @param Request $request
      * @return JsonResponse|Response
      *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function postPlayerAction(Request $request)
     {
@@ -70,7 +71,7 @@ class PlayerController extends AbstractFOSRestController
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->playerService->customValidations($form->getData(), true);
+        $customErrors = $this->playerService->customValidations($form->getData());
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
@@ -86,17 +87,18 @@ class PlayerController extends AbstractFOSRestController
      * @param Player $player
      * @return JsonResponse|Response
      *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function putPlayerAction(Request $request, Player $player)
     {
+        $lastClub = $player->getClub();
         $form = $this->playerForm($request, $player);
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->playerService->customValidations($player);
+        $customErrors = $this->playerService->customValidations($player, $lastClub);
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
@@ -113,17 +115,18 @@ class PlayerController extends AbstractFOSRestController
      *
      * @return JsonResponse|Response
      *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function patchPlayerAction(Request $request, Player $player)
     {
+        $lastClub = $player->getClub();
         $form = $this->playerForm($request, $player, false);
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->playerService->customValidations($player);
+        $customErrors = $this->playerService->customValidations($player, $lastClub);
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }

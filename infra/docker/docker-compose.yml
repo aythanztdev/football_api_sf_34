@@ -18,15 +18,15 @@ services:
     image: lfp-api-php
     build: ./php
     links:
-      - dbserver
+      - db
     volumes:
       - ${APP_DIR}:/home:cached
     network_mode: bridge
 
-  dbserver:
+  db:
     container_name: lfp-api-db
     image: lfp-api-db
-    build: ./dbserver
+    build: ./db
     ports:
       - "${DB_PORT}:3306"
     volumes:

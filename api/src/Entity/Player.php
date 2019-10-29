@@ -40,6 +40,14 @@ class Player
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Email
+     * @Groups({"player", "club"})
+     */
+    private $email;
+
+    /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank
      * @Groups({"player", "club"})
@@ -117,6 +125,18 @@ class Player
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
 
         return $this;
     }

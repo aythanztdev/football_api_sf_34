@@ -80,7 +80,7 @@ class ClubController extends AbstractFOSRestController
      */
     public function putClubAction(Request $request, Club $club)
     {
-        $form = $this->clubForm($request, $club);
+        $form = $this->clubForm($request, $club, true);
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
@@ -100,7 +100,7 @@ class ClubController extends AbstractFOSRestController
      */
     public function patchClubAction(Request $request, Club $club)
     {
-        $form = $this->clubForm($request, $club, false);
+        $form = $this->clubForm($request, $club);
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
@@ -119,7 +119,7 @@ class ClubController extends AbstractFOSRestController
      *
      * @return \Symfony\Component\Form\FormInterface
      */
-    private function clubForm(Request $request, Club $club, $clearMissing = true)
+    private function clubForm(Request $request, Club $club, $clearMissing = false)
     {
         $form = $this->createForm(ClubType::class, $club);
         $form->submit($request->request->all(), $clearMissing);

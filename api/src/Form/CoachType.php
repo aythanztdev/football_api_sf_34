@@ -6,6 +6,7 @@ use App\Entity\Club;
 use App\Entity\Coach;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,6 +22,7 @@ class CoachType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
+            ->add('email', EmailType::class)
             ->add('salary', NumberType::class)
             ->add('club', EntityType::class, [
                 'class' => Club::class

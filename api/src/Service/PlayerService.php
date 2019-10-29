@@ -6,6 +6,7 @@ use App\Entity\Club;
 use App\Entity\Player;
 use App\Repository\PlayerRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\NonUniqueResultException;
 
 class PlayerService extends AbstractService
 {
@@ -48,13 +49,12 @@ class PlayerService extends AbstractService
 
     /**
      * @param Player $player
-     * @param bool $isPost
-     *
+     * @param $lastClub
      * @return array
      *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    public function customValidations(Player $player, $isPost = false)
+    public function customValidations(Player $player, $lastClub = null)
     {
         $errors = [];
 
@@ -63,7 +63,7 @@ class PlayerService extends AbstractService
             $errors = array_merge($errors, $errorsJuniorAge);
         }
 
-        $errorsPlayersClub = $this->validatePlayersClubConditions($player, $isPost);
+        $errorsPlayersClub = $this->validatePlayersClubConditions($player, $lastClub);
         $errors = array_merge($errors, $errorsPlayersClub);
 
         return $errors;
@@ -89,13 +89,13 @@ class PlayerService extends AbstractService
 
     /**
      * @param Player $player
-     * @param bool $isPost
+     * @param $lastClub
      *
      * @return array
      *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
-    private function validatePlayersClubConditions(Player $player, bool $isPost)
+    private function validatePlayersClubConditions(Player $player, $lastClub)
     {
         $errors = [];
         $club = $player->getClub();
@@ -114,11 +114,7 @@ class PlayerService extends AbstractService
         }
 
         $totalProfessionalPlayers = $this->playerRepository->getTotalPlayers($player->getClub(), Player::TYPE_PROFESSIONAL);
-        if($isPost) {
-            $totalProfessionalPlayers++;
-        }
-
-        if ($totalProfessionalPlayers > Club::MAX_LIMIT_PLAYERS) {
+        if ($totalProfessionalPlayers >= Club::MAX_LIMIT_PLAYERS && $lastClub !== $player->getClub()) {
             $errors[] = sprintf('Total players per team cannot be greater than %s', Club::MAX_LIMIT_PLAYERS);
         }
 
