@@ -54,12 +54,10 @@ class Club
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"club"})
      */
     private $createdAt;
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"club"})
      */
     private $updatedAt;
     /**

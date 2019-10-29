@@ -78,25 +78,21 @@ class Player
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Club", inversedBy="players")
-     * @Groups({"player"})
      */
     private $club;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"player", "club"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"player", "club"})
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"player"})
      */
     private $deletedAt;
 

@@ -24,4 +24,10 @@ abstract class AbstractService
     {
         $this->entityManager->flush();
     }
+
+    public function remove($object)
+    {
+        $this->entityManager->remove($object);
+        $this->entityManager->flush();
+    }
 }

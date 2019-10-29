@@ -55,19 +55,16 @@ class Coach
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"coach"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"coach"})
      */
     private $updatedAt;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
-     * @Groups({"coach"})
      */
     private $deletedAt;
 

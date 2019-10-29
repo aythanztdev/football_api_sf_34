@@ -41,10 +41,9 @@ class PlayerService extends AbstractService
         return $this->playerRepository->findAll();
     }
 
-    public function delete(Player $player)
+    public function delete($player)
     {
-        $this->entityManager->remove($player);
-        $this->save();
+        $this->remove($player);
     }
 
     /**
