@@ -10,6 +10,12 @@ class ClubService extends AbstractService
 {
     private $clubRepository;
 
+    /**
+     * ClubService constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     * @param ClubRepository $playerRepository
+     */
     public function __construct(
         EntityManagerInterface $entityManager,
         ClubRepository $playerRepository
@@ -19,12 +25,18 @@ class ClubService extends AbstractService
         parent::__construct($entityManager);
     }
 
+    /**
+     * @param Club $club
+     */
     public function persistAndSave(Club $club)
     {
         $this->entityManager->persist($club);
         $this->save();
     }
 
+    /**
+     * @return Club[]
+     */
     public function getAll()
     {
         return $this->clubRepository->findAll();

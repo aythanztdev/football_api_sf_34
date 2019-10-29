@@ -1,12 +1,13 @@
 <?php
 
-
 namespace App\Repository;
 
-
+use App\Entity\Club;
 use App\Entity\Player;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use function Symfony\Component\DependencyInjection\Loader\Configurator\expr;
 
 /**
  * @method Player|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,46 @@ class PlayerRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param Club $club
+     *
+     * @return mixed
+     *
+     * @throws NonUniqueResultException
+     */
+    public function getTotalSalaries(Club $club)
+    {
+            return $this->createQueryBuilder('p')
+                ->select('SUM(p.salary)')
+                ->andWhere('p.club = :club')
+                ->setParameter('club', $club)
+                ->getQuery()
+                ->getSingleScalarResult();
+    }
+
+    /**
+     * @param Club $club
+     * @param string $type
+     *
+     * @return mixed
+     *
+     * @throws NonUniqueResultException
+     */
+    public function getTotalPlayers(Club $club, string $type)
+    {
+        $qb = $this->createQueryBuilder('p');
+        return $qb
+            ->select('COUNT(p.id)')
+            ->andWhere(
+                $qb->expr()->andX(
+                    'p.club = :club',
+                    'p.type = :type'
+                )
+            )
+            ->setParameter('club', $club)
+            ->setParameter('type', $type)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

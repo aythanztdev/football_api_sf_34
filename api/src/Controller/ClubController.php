@@ -94,7 +94,7 @@ class ClubController extends AbstractFOSRestController
      */
     public function patchClubAction(Request $request, Club $club)
     {
-        $form = $this->clubForm($request, $club);
+        $form = $this->clubForm($request, $club, false);
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
@@ -106,10 +106,17 @@ class ClubController extends AbstractFOSRestController
         return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
     }
 
-    private function clubForm(Request $request, Club $club)
+    /**
+     * @param Request $request
+     * @param Club $club
+     * @param bool $clearMissing
+     *
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    private function clubForm(Request $request, Club $club, $clearMissing = true)
     {
         $form = $this->createForm(ClubType::class, $club);
-        $form->submit($request->request->all());
+        $form->submit($request->request->all(), $clearMissing);
 
         return $form;
     }

@@ -57,16 +57,16 @@ class Player
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Assert\Choice(callback="getTypes")
      * @Groups({"player", "club"})
      */
     private $type;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
-     * @Assert\NotBlank
+     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
      * @Groups({"player", "club"})
      */
-    private $salary;
+    private $salary = 0;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Club", inversedBy="players")
