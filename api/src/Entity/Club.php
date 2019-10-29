@@ -23,14 +23,14 @@ class Club
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"club", "player"})
+     * @Groups({"club", "player", "coach"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Groups({"club", "player"})
+     * @Groups({"club", "player", "coach"})
      */
     private $name;
 

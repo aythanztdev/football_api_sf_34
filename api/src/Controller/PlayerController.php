@@ -19,6 +19,12 @@ class PlayerController extends AbstractFOSRestController
     private $playerService;
     private $serializer;
 
+    /**
+     * PlayerController constructor.
+     *
+     * @param PlayerService $playerService
+     * @param SerializerInterface $serializer
+     */
     public function __construct(
         PlayerService $playerService,
         SerializerInterface $serializer
@@ -64,7 +70,7 @@ class PlayerController extends AbstractFOSRestController
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->playerService->customValidations($form->getData());
+        $customErrors = $this->playerService->customValidations($form->getData(), true);
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
@@ -90,7 +96,7 @@ class PlayerController extends AbstractFOSRestController
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->playerService->customValidations($player, true);
+        $customErrors = $this->playerService->customValidations($player);
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
@@ -117,7 +123,7 @@ class PlayerController extends AbstractFOSRestController
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->playerService->customValidations($player, true);
+        $customErrors = $this->playerService->customValidations($player);
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }

@@ -16,6 +16,12 @@ class ClubController extends AbstractFOSRestController
     private $clubService;
     private $serializer;
 
+    /**
+     * ClubController constructor.
+     *
+     * @param ClubService $clubService
+     * @param SerializerInterface $serializer
+     */
     public function __construct(
         ClubService $clubService,
         SerializerInterface $serializer

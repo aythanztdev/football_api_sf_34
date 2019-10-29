@@ -45,32 +45,43 @@ class PlayerService extends AbstractService
         $this->entityManager->remove($player);
         $this->save();
     }
+
     /**
      * @param Player $player
-     * @param bool $isPatchOrPut
+     * @param bool $isPost
      *
      * @return array
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function customValidations(Player $player, $isPatchOrPut = false)
+    public function customValidations(Player $player, $isPost = false)
     {
         $errors = [];
 
-        $club = $player->getClub();
-        if (!$club instanceof Club) {
-            return $errors;
+        if ($player->getType() === Player::TYPE_JUNIOR) {
+            $errorsJuniorAge = $this->validateAge($player);
+            $errors = array_merge($errors, $errorsJuniorAge);
         }
 
-        $totalSalaries = $this->playerRepository->getTotalSalaries($club) + $player->getSalary();
-        $clubBudget = $club->getBudget();
-        if ($totalSalaries > $clubBudget) {
-            $errors[] = sprintf('Total salaries can be greater than %s', $clubBudget);
-        }
+        $errorsPlayersClub = $this->validatePlayersClubConditions($player, $isPost);
+        $errors = array_merge($errors, $errorsPlayersClub);
 
-        if ($player->getType() === Player::TYPE_PROFESSIONAL) {
-            $errorsProfessionalPlayer = $this->validateProfessionalPlayer($player, $isPatchOrPut);
-            $errors = array_merge($errors, $errorsProfessionalPlayer);
+        return $errors;
+    }
+
+    private function validateAge(Player $player)
+    {
+        $maxYears = 23;
+        $errors = [];
+
+        $dateNow = new \DateTime();
+        $dateNow->setTime(0, 0, 0);
+
+        $datePlayer = $player->getBirthday()->setTime(0, 0, 0);
+        $datePlayer->add(new \DateInterval(sprintf('P%sY', $maxYears)));
+
+        if ($dateNow > $datePlayer) {
+            $errors[] = sprintf('Junior player must not be more than %s years old', $maxYears);
         }
 
         return $errors;
@@ -78,24 +89,35 @@ class PlayerService extends AbstractService
 
     /**
      * @param Player $player
-     * @param $isPatchOrPut
+     * @param bool $isPost
      *
      * @return array
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    private function validateProfessionalPlayer(Player $player, $isPatchOrPut)
+    private function validatePlayersClubConditions(Player $player, bool $isPost)
     {
         $errors = [];
-        if (empty($player->getSalary())) {
-            $errors[] = 'This value should not be blank or 0';
-        }
-
-        if ($isPatchOrPut) {
+        $club = $player->getClub();
+        if (!$club instanceof Club) {
             return $errors;
         }
 
-        $totalProfessionalPlayers = $this->playerRepository->getTotalPlayers($player->getClub(), Player::TYPE_PROFESSIONAL) + 1;
+        if ($player->getType() === Player::TYPE_PROFESSIONAL && empty($player->getSalary())) {
+            $errors[] = 'This value should not be blank or 0';
+        }
+
+        $totalSalaries = $this->playerRepository->getTotalSalaries($club) + $player->getSalary();
+        $clubBudget = $club->getBudget();
+        if ($totalSalaries > $clubBudget) {
+            $errors[] = sprintf('Total salaries cannot be greater than %s', $clubBudget);
+        }
+
+        $totalProfessionalPlayers = $this->playerRepository->getTotalPlayers($player->getClub(), Player::TYPE_PROFESSIONAL);
+        if($isPost) {
+            $totalProfessionalPlayers++;
+        }
+
         if ($totalProfessionalPlayers > Club::MAX_LIMIT_PLAYERS) {
             $errors[] = sprintf('Total players per team cannot be greater than %s', Club::MAX_LIMIT_PLAYERS);
         }

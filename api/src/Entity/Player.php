@@ -70,7 +70,6 @@ class Player
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Club", inversedBy="players")
-     * @Assert\NotBlank
      * @Groups({"player"})
      */
     private $club;

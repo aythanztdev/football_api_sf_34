@@ -27,18 +27,21 @@ class Coach
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Groups({"coach"})
+     * @Groups({"coach", "club"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
-     * @Groups({"coach"})
+     * @Assert\NotBlank
+     * @Groups({"coach", "club"})
      */
     private $salary;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Club", inversedBy="coach")
+     * @Assert\NotBlank
+     * @Groups({"coach"})
      */
     private $club;
 
