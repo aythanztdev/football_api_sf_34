@@ -36,14 +36,20 @@ class PlayerService extends AbstractService
         $this->save();
     }
 
-    public function getAll()
-    {
-        return $this->playerRepository->findAll();
-    }
-
+    /**
+     * @param $player
+     */
     public function delete($player)
     {
         $this->remove($player);
+    }
+
+    /**
+     * @return Player[]
+     */
+    public function getAll()
+    {
+        return $this->playerRepository->findAll();
     }
 
     /**
