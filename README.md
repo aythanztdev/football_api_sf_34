@@ -61,15 +61,6 @@ exit
 ```
 
 #
-### IMPORTANT 
-
-The notification service is unavailable by default for avoiding send emails during the load fixtures steps. 
-For activating it, you should change the value of NOTIFICATION_SERVICE_STATUS to 1:
-````
-cd ../../api (LFP_SF_34 > api)
-nano .env
-NOTIFICATION_SERVICE_STATUS=1
-````
 
 You can show some data visiting:
 ```
@@ -81,7 +72,29 @@ http://lfp-api.loc/api/coachs
 http://lfp-api.loc/api/coachs/1
 ```
 
+#
+
 Postman file (LFP.postman_collection.json) for POST, PUT, PATCH, GET resources is located in:
 ```
-LFP_SF_34 > api > data > LFP.postman_collection.json
+cd ../../api/data
+```
+
+#
+
+### IMPORTANT 
+
+The notification service is unavailable by default for avoiding send emails during the load fixtures steps. 
+For activating it, you should change the value of NOTIFICATION_SERVICE_STATUS to 1 in .env:
+
+If you did the last step:
+```
+cd ..
+nano .env
+NOTIFICATION_SERVICE_STATUS=1
+```
+If not
+```
+cd ../../api
+nano .env
+NOTIFICATION_SERVICE_STATUS=1
 ```
