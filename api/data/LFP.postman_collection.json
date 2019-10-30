@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "838d0b02-1495-46ac-8768-5346896fbdfd",
+		"name": "LFP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Club",
+			"item": [
+				{
+					"name": "Club",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Fútbol Club Barcelona\",\n\t\"shield\": 1,\n\t\"budget\": 3000000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/clubs",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clubs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clubs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/clubs",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clubs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Club",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/clubs/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clubs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Club",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"budget\": 2000000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/clubs/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clubs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Club",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Unión Deportiva Las Palmas\",\n\t\"budget\": 900000,\n\t\"shield\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/clubs/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clubs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Player",
+			"item": [
+				{
+					"name": "Player",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Mendoza\",\n\t\"email\": \"aythami.sanchez@acilia.es\",\n\t\"birthday\": \"1980-10-28\",\n\t\"position\": \"FORWARD\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 20000,\n\t\"club\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/players",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Players",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/players",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Player",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/players/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Player",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"salary\": 20000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/players/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Player",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"aythami.sanchez@acilia.es\",\n\t\"birthday\": \"1980-10-28\",\n\t\"position\": \"DEFENDER\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 10000,\n\t\"club\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/players/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Player",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/players/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Coach",
+			"item": [
+				{
+					"name": "Coach",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"aythami.sanchez@acilia.es\",\n\t\"salary\": 2000,\n\t\"club\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/coaches",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"coaches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Coachs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/coaches",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"coaches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Coach",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/coaches/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"coaches",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Coach",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"salary\": 200000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/coaches/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"coaches",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Coach",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"aythami.sanchez@acilia.es\",\n\t\"salary\": 1000,\n\t\"club\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/coaches/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"coaches",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Asset",
+			"item": [
+				{
+					"name": "Asset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/aythanzt/Pictures/Captura de pantalla 2019-10-16 a las 8.05.11.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/assets",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"assets"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
