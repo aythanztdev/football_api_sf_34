@@ -117,6 +117,12 @@ class Coach
     {
         $this->club = $club;
 
+        // set (or unset) the owning side of the relation if necessary
+        $newCoach = null === $club ? null : $this;
+        if ($club->getCoach() !== $newCoach) {
+            $club->setCoach($newCoach);
+        }
+
         return $this;
     }
 }

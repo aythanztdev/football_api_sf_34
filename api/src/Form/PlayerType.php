@@ -30,7 +30,9 @@ class PlayerType extends AbstractType
             ])
             ->add('position', TextType::class)
             ->add('type', TextType::class)
-            ->add('salary', NumberType::class)
+            ->add('salary', NumberType::class, [
+                'empty_data' => '0'
+            ])
             ->add('club', EntityType::class, [
                 'class' => Club::class
             ])

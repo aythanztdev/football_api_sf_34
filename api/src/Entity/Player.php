@@ -78,6 +78,7 @@ class Player
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Club", inversedBy="players")
+     * @Groups({"player"})
      */
     private $club;
 

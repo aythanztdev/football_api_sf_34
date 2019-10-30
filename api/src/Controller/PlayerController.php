@@ -148,6 +148,18 @@ class PlayerController extends AbstractFOSRestController
         return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
     }
 
+    /**
+     * @param Player $player
+     *
+     * @return JsonResponse
+     */
+    public function deletePlayerAction(Player $player)
+    {
+        $this->playerService->delete($player);
+
+        return new JsonResponse('', Response::HTTP_OK, [], true);
+    }
+
     private function playerForm(Request $request, Player $player, $clearMissing = true)
     {
         $form = $this->createForm(PlayerType::class, $player);

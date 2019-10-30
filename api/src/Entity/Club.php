@@ -137,24 +137,6 @@ class Club
         return $this;
     }
 
-    public function getCoach(): ?Coach
-    {
-        return $this->coach;
-    }
-
-    public function setCoach(?Coach $coach): self
-    {
-        $this->coach = $coach;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newClub = null === $coach ? null : $this;
-        if ($coach->getClub() !== $newClub) {
-            $coach->setClub($newClub);
-        }
-
-        return $this;
-    }
-
     public function getShield(): ?Asset
     {
         return $this->shield;
@@ -169,6 +151,23 @@ class Club
         if ($shield->getClub() !== $newClub) {
             $shield->setClub($newClub);
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function getCoach(): ?Coach
+    {
+        return $this->coach;
+    }
+
+    public function setCoach(?Coach $coach): self
+    {
+        $this->coach = $coach;
 
         return $this;
     }
