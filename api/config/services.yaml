@@ -6,6 +6,7 @@
 parameters:
     relative_files_directory: '/uploads/files'
     files_directory: '%kernel.project_dir%/public%relative_files_directory%'
+    NOTIFICATION_SERVICE_STATUS: '%env(NOTIFICATION_SERVICE_STATUS)%'
 
 services:
     # default configuration for services in *this* file
@@ -35,3 +36,7 @@ services:
         arguments:
             $targetDirectory: '%files_directory%'
             $relativeTargetDirectory: '%relative_files_directory%'
+
+    App\Service\NotificationService:
+        arguments:
+            $notificationServiceStatus: '%NOTIFICATION_SERVICE_STATUS%'
