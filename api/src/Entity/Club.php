@@ -42,7 +42,7 @@ class Club
     private $budget;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Asset", mappedBy="club")
+     * @ORM\OneToOne(targetEntity="App\Entity\Asset", inversedBy="club")
      * @Groups({"club"})
      */
     private $shield;
@@ -54,7 +54,7 @@ class Club
     private $players;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Coach", inversedBy="club")
+     * @ORM\OneToOne(targetEntity="App\Entity\Coach", mappedBy="club")
      * @Groups({"club"})
      */
     private $coach;
@@ -146,18 +146,7 @@ class Club
     {
         $this->shield = $shield;
 
-        // set (or unset) the owning side of the relation if necessary
-        $newClub = null === $shield ? null : $this;
-        if ($shield->getClub() !== $newClub) {
-            $shield->setClub($newClub);
-        }
-
         return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
     }
 
     public function getCoach(): ?Coach
@@ -168,6 +157,12 @@ class Club
     public function setCoach(?Coach $coach): self
     {
         $this->coach = $coach;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newClub = null === $coach ? null : $this;
+        if ($coach->getClub() !== $newClub) {
+            $coach->setClub($newClub);
+        }
 
         return $this;
     }

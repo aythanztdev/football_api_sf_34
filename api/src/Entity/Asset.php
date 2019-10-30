@@ -31,7 +31,7 @@ class Asset
     private $path;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Club", inversedBy="shield")
+     * @ORM\OneToOne(targetEntity="App\Entity\Club", mappedBy="shield")
      */
     private $club;
 
@@ -73,6 +73,12 @@ class Asset
     public function setClub(?Club $club): self
     {
         $this->club = $club;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newShield = null === $club ? null : $this;
+        if ($club->getShield() !== $newShield) {
+            $club->setShield($newShield);
+        }
 
         return $this;
     }
