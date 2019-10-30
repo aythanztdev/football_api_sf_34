@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Player;
 use App\Form\PlayerType;
+use App\Service\NotificationService;
 use App\Service\PlayerService;
 use App\Service\ValidateService;
 use Doctrine\ORM\NonUniqueResultException;
@@ -21,6 +22,7 @@ class PlayerController extends AbstractFOSRestController
     private $playerService;
     private $validateService;
     private $serializer;
+    private $notificationService;
 
     /**
      * PlayerController constructor.
@@ -28,16 +30,19 @@ class PlayerController extends AbstractFOSRestController
      * @param PlayerService $playerService
      * @param ValidateService $validateService
      * @param SerializerInterface $serializer
+     * @param NotificationService $notificationService
      */
     public function __construct(
         PlayerService $playerService,
         ValidateService $validateService,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
+        NotificationService $notificationService
     )
     {
         $this->playerService = $playerService;
         $this->validateService = $validateService;
         $this->serializer = $serializer;
+        $this->notificationService = $notificationService;
     }
 
     /**
@@ -82,6 +87,7 @@ class PlayerController extends AbstractFOSRestController
         }
 
         $this->playerService->persistAndSave($form->getData());
+        $this->notificationService->send($form->getData(), $this->notificationService::TYPE_EMAIL);
 
         $playersSerialized = $this->serializer->serialize($form->getData(), 'json', ['groups' => ['player']]);
         return new JsonResponse($playersSerialized, Response::HTTP_CREATED, [], true);

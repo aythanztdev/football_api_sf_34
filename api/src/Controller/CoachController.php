@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Coach;
 use App\Form\CoachType;
 use App\Service\CoachService;
+use App\Service\NotificationService;
 use App\Service\ValidateService;
 use Doctrine\ORM\NonUniqueResultException;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -20,6 +21,7 @@ class CoachController extends AbstractFOSRestController
     private $coachService;
     private $validateService;
     private $serializer;
+    private $notificationService;
 
     /**
      * CoachController constructor.
@@ -27,16 +29,19 @@ class CoachController extends AbstractFOSRestController
      * @param CoachService $coachService
      * @param ValidateService $validateService
      * @param SerializerInterface $serializer
+     * @param NotificationService $notificationService
      */
     public function __construct(
         CoachService $coachService,
         ValidateService $validateService,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
+        NotificationService $notificationService
     )
     {
         $this->coachService = $coachService;
         $this->validateService = $validateService;
         $this->serializer = $serializer;
+        $this->notificationService = $notificationService;
     }
 
     /**
@@ -81,6 +86,7 @@ class CoachController extends AbstractFOSRestController
         }
 
         $this->coachService->persistAndSave($form->getData());
+        $this->notificationService->send($form->getData(), $this->notificationService::TYPE_EMAIL);
 
         $coachsSerialized = $this->serializer->serialize($form->getData(), 'json', ['groups' => ['coach']]);
         return new JsonResponse($coachsSerialized, Response::HTTP_CREATED, [], true);

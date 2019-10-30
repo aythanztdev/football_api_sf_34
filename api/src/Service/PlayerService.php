@@ -2,29 +2,30 @@
 
 namespace App\Service;
 
-use App\Entity\Club;
-use App\Entity\Coach;
 use App\Entity\Player;
 use App\Repository\PlayerRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\NonUniqueResultException;
 
 class PlayerService extends AbstractService
 {
     private $playerRepository;
+    private $mailerService;
 
     /**
      * PlayerService constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param PlayerRepository $playerRepository
+     * @param MailerService $mailerService
      */
     public function __construct(
         EntityManagerInterface $entityManager,
-        PlayerRepository $playerRepository
+        PlayerRepository $playerRepository,
+        MailerService $mailerService
     )
     {
         $this->playerRepository = $playerRepository;
+        $this->mailerService = $mailerService;
         parent::__construct($entityManager);
     }
 
