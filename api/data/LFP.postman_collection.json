@@ -164,7 +164,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Mendoza\",\n\t\"email\": \"aythami.sanchez@acilia.es\",\n\t\"birthday\": \"1980-10-28\",\n\t\"position\": \"FORWARD\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 20000,\n\t\"club\": 1\n}",
+							"raw": "{\n\t\"name\": \"Mendoza\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"birthday\": \"1980-10-28\",\n\t\"position\": \"FORWARD\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 20000,\n\t\"club\": 5\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -266,7 +266,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"aythami.sanchez@acilia.es\",\n\t\"birthday\": \"1980-10-28\",\n\t\"position\": \"DEFENDER\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 10000,\n\t\"club\": 1\n}",
+							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"birthday\": \"1980-10-28\",\n\t\"position\": \"DEFENDER\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 10000,\n\t\"club\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -324,7 +324,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"aythami.sanchez@acilia.es\",\n\t\"salary\": 2000,\n\t\"club\": null\n}",
+							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"salary\": 2000,\n\t\"club\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -426,7 +426,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"aythami.sanchez@acilia.es\",\n\t\"salary\": 1000,\n\t\"club\": 5\n}",
+							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"salary\": 1000,\n\t\"club\": 5\n}",
 							"options": {
 								"raw": {
 									"language": "json"
