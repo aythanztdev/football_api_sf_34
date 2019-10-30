@@ -100,8 +100,11 @@ Add the next values and save.
 ##### STEP 4
 Go to the selector on top right and select LFP (the enviroment name that you set in the last step)
 
-![alt text](https://github.com/aythanztdev/lfp_sf_34/blob/master/api/data/step3.png)
+![alt text](https://github.com/aythanztdev/lfp_sf_34/blob/master/api/data/step4.png)
 
+##### STEP 5
+Select a service from the list of left side and press "Send" in the top right
 
+![alt text](https://github.com/aythanztdev/lfp_sf_34/blob/master/api/data/step4.png)
 
 #
