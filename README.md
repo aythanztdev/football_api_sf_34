@@ -43,6 +43,7 @@ exit
 
 #
 
+### Creation and Population database
 Create database
 ```
 docker exec -it lfp-api-db mysql -e "CREATE DATABASE IF NOT EXISTS lfp"
@@ -73,28 +74,34 @@ http://lfp-api.loc/api/coachs/1
 ```
 
 #
-
-Postman file (LFP.postman_collection.json) for POST, PUT, PATCH, GET resources is located in:
+For testing the web services, you can use the LFP.postman_collection.json located in:
 ```
 cd ../../api/data
 ```
 
+Postman is a HTTP client for testing web services. You can download it from https://www.getpostman.com/
+
+##### STEP 1
+For importing the file, you should go to the top right and press "Import", after this, you should add
+the LFP.postman_collection.json.
+
+![alt text](https://github.com/aythanztdev/lfp_sf_34/blob/master/api/data/step1.png)
+
+##### STEP 2
+You have to press in the gear of top right and then, click on "Add".
+
+![alt text](https://github.com/aythanztdev/lfp_sf_34/blob/master/api/data/step2.png)
+
+##### STEP 3
+Add the next values and save.
+
+![alt text](https://github.com/aythanztdev/lfp_sf_34/blob/master/api/data/step3.png)
+
+##### STEP 4
+Go to the selector on top right and select LFP (the enviroment name that you set in the last step)
+
+![alt text](https://github.com/aythanztdev/lfp_sf_34/blob/master/api/data/step3.png)
+
+
+
 #
-
-### IMPORTANT 
-
-The notification service is unavailable by default for avoiding send emails during the load fixtures steps. 
-For activating it, you should change the value of NOTIFICATION_SERVICE_STATUS to 1 in .env:
-
-If you did the last step:
-```
-cd ..
-nano .env
-NOTIFICATION_SERVICE_STATUS=1
-```
-If not
-```
-cd ../../api
-nano .env
-NOTIFICATION_SERVICE_STATUS=1
-```

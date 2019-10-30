@@ -98,7 +98,7 @@ class ValidateService
      *
      * @throws NonUniqueResultException
      */
-    public function validateCoachClubConditions(Coach $coach)
+    private function validateCoachClubConditions(Coach $coach)
     {
         $errors = $this->validateSalaries($coach->getClub());
 
