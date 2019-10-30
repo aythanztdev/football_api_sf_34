@@ -6,6 +6,10 @@ players:
   type: rest
   resource: App\Controller\PlayerController
 
-coachs:
+coaches:
   type: rest
   resource: App\Controller\CoachController
+
+assets:
+  type: rest
+  resource: App\Controller\AssetController

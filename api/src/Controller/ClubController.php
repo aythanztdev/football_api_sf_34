@@ -73,16 +73,10 @@ class ClubController extends AbstractFOSRestController
             return $this->handleView($this->view($form));
         }
 
-        $shield = $request->files->get('shield');
-        if ($shield) {
-            $shieldFilename = $this->fileUploaderService->upload($shield);
-            $this->clubService->addShield($club, $shieldFilename);
-        }
-
         $this->clubService->persistAndSave($form->getData());
 
-        $playersSerialized = $this->serializer->serialize($form->getData(), 'json', ['groups' => ['club']]);
-        return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
+        $playerSerialized = $this->serializer->serialize($form->getData(), 'json', ['groups' => ['club']]);
+        return new JsonResponse($playerSerialized, Response::HTTP_OK, [], true);
     }
 
     /**
@@ -93,7 +87,7 @@ class ClubController extends AbstractFOSRestController
      */
     public function putClubAction(Request $request, Club $club)
     {
-        $form = $this->clubForm($request, $club, true);
+        $form = $this->clubForm($request, $club);
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
@@ -101,8 +95,8 @@ class ClubController extends AbstractFOSRestController
 
         $this->clubService->save();
 
-        $playersSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
-        return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
+        $playerSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
+        return new JsonResponse($playerSerialized, Response::HTTP_OK, [], true);
     }
 
     /**
@@ -113,7 +107,7 @@ class ClubController extends AbstractFOSRestController
      */
     public function patchClubAction(Request $request, Club $club)
     {
-        $form = $this->clubForm($request, $club);
+        $form = $this->clubForm($request, $club, false);
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
@@ -121,8 +115,8 @@ class ClubController extends AbstractFOSRestController
 
         $this->clubService->save();
 
-        $playersSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
-        return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
+        $playerSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
+        return new JsonResponse($playerSerialized, Response::HTTP_OK, [], true);
     }
 
     /**
@@ -132,7 +126,7 @@ class ClubController extends AbstractFOSRestController
      *
      * @return \Symfony\Component\Form\FormInterface
      */
-    private function clubForm(Request $request, Club $club, $clearMissing = false)
+    private function clubForm(Request $request, Club $club, $clearMissing = true)
     {
         $form = $this->createForm(ClubType::class, $club);
         $data = array_merge($request->request->all(), $request->files->all());

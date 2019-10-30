@@ -106,6 +106,7 @@ class Player
     {
         return [self::TYPE_PROFESSIONAL, self::TYPE_JUNIOR];
     }
+    /* FINISH DONT REMOVE */
 
     public function getId(): ?int
     {
@@ -195,6 +196,4 @@ class Player
 
         return $this;
     }
-    /* FINISH DONT REMOVE */
-
 }

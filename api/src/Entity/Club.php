@@ -36,16 +36,16 @@ class Club
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"club"})
-     */
-    private $shieldFileName;
-
-    /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
      * @Groups({"club"})
      */
     private $budget;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Asset", mappedBy="club")
+     * @Groups({"club"})
+     */
+    private $shield;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Player", mappedBy="club")
@@ -90,18 +90,6 @@ class Club
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getShieldFileName(): ?string
-    {
-        return $this->shieldFileName;
-    }
-
-    public function setShieldFileName(string $shieldFileName): self
-    {
-        $this->shieldFileName =  $shieldFileName;
 
         return $this;
     }
@@ -162,6 +150,24 @@ class Club
         $newClub = null === $coach ? null : $this;
         if ($coach->getClub() !== $newClub) {
             $coach->setClub($newClub);
+        }
+
+        return $this;
+    }
+
+    public function getShield(): ?Asset
+    {
+        return $this->shield;
+    }
+
+    public function setShield(?Asset $shield): self
+    {
+        $this->shield = $shield;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newClub = null === $shield ? null : $this;
+        if ($shield->getClub() !== $newClub) {
+            $shield->setClub($newClub);
         }
 
         return $this;
