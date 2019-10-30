@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Club;
 use App\Repository\ClubRepository;
+use Doctrine\ORM\Cache\CacheKey;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ClubService extends AbstractService
@@ -40,5 +41,10 @@ class ClubService extends AbstractService
     public function getAll()
     {
         return $this->clubRepository->findAll();
+    }
+
+    public function addShield(Club $club, string $shieldFilename)
+    {
+        $club->setShieldFileName($shieldFilename);
     }
 }

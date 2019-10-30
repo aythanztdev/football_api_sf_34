@@ -47,7 +47,7 @@ class Coach
     private $salary = 0;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Club", inversedBy="coach", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Club", mappedBy="coach")
      * @Groups({"coach"})
      */
     private $club;

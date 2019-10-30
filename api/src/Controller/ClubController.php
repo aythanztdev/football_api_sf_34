@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Club;
 use App\Form\ClubType;
 use App\Service\ClubService;
+use App\Service\FileUploaderService;
+use Symfony\Component\DependencyInjection\Tests\Compiler\C;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,20 +17,24 @@ class ClubController extends AbstractFOSRestController
 {
     private $clubService;
     private $serializer;
+    private $fileUploaderService;
 
     /**
      * ClubController constructor.
      *
      * @param ClubService $clubService
      * @param SerializerInterface $serializer
+     * @param FileUploaderService $fileUploaderService
      */
     public function __construct(
         ClubService $clubService,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
+        FileUploaderService $fileUploaderService
     )
     {
         $this->clubService = $clubService;
         $this->serializer = $serializer;
+        $this->fileUploaderService = $fileUploaderService;
     }
 
     /**
@@ -60,10 +66,17 @@ class ClubController extends AbstractFOSRestController
      */
     public function postClubAction(Request $request)
     {
-        $form = $this->clubForm($request, new Club());
+        $club = new Club();
+        $form = $this->clubForm($request, $club);
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
+        }
+
+        $shield = $request->files->get('shield');
+        if ($shield) {
+            $shieldFilename = $this->fileUploaderService->upload($shield);
+            $this->clubService->addShield($club, $shieldFilename);
         }
 
         $this->clubService->persistAndSave($form->getData());
@@ -122,7 +135,8 @@ class ClubController extends AbstractFOSRestController
     private function clubForm(Request $request, Club $club, $clearMissing = false)
     {
         $form = $this->createForm(ClubType::class, $club);
-        $form->submit($request->request->all(), $clearMissing);
+        $data = array_merge($request->request->all(), $request->files->all());
+        $form->submit($data, $clearMissing);
 
         return $form;
     }

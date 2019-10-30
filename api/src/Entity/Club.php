@@ -36,6 +36,12 @@ class Club
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"club"})
+     */
+    private $shieldFileName;
+
+    /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
      * @Groups({"club"})
      */
@@ -48,7 +54,7 @@ class Club
     private $players;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Coach", mappedBy="club", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Coach", inversedBy="club")
      * @Groups({"club"})
      */
     private $coach;
@@ -84,6 +90,18 @@ class Club
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getShieldFileName(): ?string
+    {
+        return $this->shieldFileName;
+    }
+
+    public function setShieldFileName(string $shieldFileName): self
+    {
+        $this->shieldFileName =  $shieldFileName;
 
         return $this;
     }
