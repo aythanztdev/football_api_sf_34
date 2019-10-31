@@ -6,6 +6,8 @@ use App\Entity\Asset;
 use App\Entity\Club;
 use App\Entity\Coach;
 use App\Entity\Player;
+use App\Exception\DataBadFormmatedException;
+use App\Exception\ServiceNotAvailableException;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -50,6 +52,9 @@ class AppFixtures extends Fixture
                 $player->setPosition($playerElement['position']);
 
                 $birthday = DateTime::createFromFormat( 'd-m-Y', $playerElement['birthday']);
+                if(empty($birthday))
+                    throw new DataBadFormmatedException('Birthday cannot be null');
+
                 $player->setBirthday($birthday);
 
                 $manager->persist($player);

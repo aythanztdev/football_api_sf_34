@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Exception\ServiceNotAvailable;
+use App\Exception\ServiceNotAvailableException;
 
 class NotificationService
 {
@@ -23,7 +23,7 @@ class NotificationService
      * @param mixed $user
      * @param string $type
      *
-     * @throws ServiceNotAvailable
+     * @throws ServiceNotAvailableException
      */
     public function send($user, string $type)
     {
@@ -34,7 +34,7 @@ class NotificationService
         switch ($type) {
             case self::TYPE_SMS:
             case self::TYPE_WHATSAPP:
-                throw new ServiceNotAvailable('Notifications channel still not available');
+                throw new ServiceNotAvailableException('Notifications channel still not available');
                 break;
 
             case self::TYPE_EMAIL:

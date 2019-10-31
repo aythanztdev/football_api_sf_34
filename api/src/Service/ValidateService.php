@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Club;
 use App\Entity\Coach;
 use App\Entity\Player;
+use App\Exception\ClubException;
 use App\Repository\PlayerRepository;
 use Doctrine\ORM\NonUniqueResultException;
 
@@ -36,10 +37,8 @@ class ValidateService
             $errors = array_merge($errors, $errorsJuniorAge);
         }
 
-        if ($player->getClub() instanceof Club) {
-            $errorsPlayersClub = $this->validatePlayerClubConditions($player, $lastClub);
-            $errors = array_merge($errors, $errorsPlayersClub);
-        }
+        $errorsPlayersClub = $this->validatePlayerClubConditions($player, $lastClub);
+        $errors = array_merge($errors, $errorsPlayersClub);
 
         return $errors;
     }
@@ -65,6 +64,7 @@ class ValidateService
         return $errors;
     }
 
+
     /**
      * @param Player $player
      * @param mixed $lastClub
@@ -77,11 +77,20 @@ class ValidateService
     {
         $errors = [];
 
-        if ($player->getType() === Player::TYPE_PROFESSIONAL && empty($player->getSalary())) {
+        if (!$player->getClub() instanceof Club) {
+            return $errors;
+        }
+
+        $playerSalary = $player->getSalary();
+        if ($player->getType() === Player::TYPE_PROFESSIONAL && empty($playerSalary)) {
             $errors[] = 'This value should not be blank or 0';
         }
 
-        $errorsSalaries = $this->validateSalaries($player->getClub(), $player->getSalary());
+        if (empty($playerSalary)) {
+            $playerSalary = 0;
+        }
+
+        $errorsSalaries = $this->validateSalaries($player->getClub(), $playerSalary);
         $errors = array_merge($errors, $errorsSalaries);
 
         $totalProfessionalPlayers = $this->playerRepository->getTotalPlayers($player->getClub(), Player::TYPE_PROFESSIONAL);
@@ -94,13 +103,18 @@ class ValidateService
 
     /**
      * @param Coach $coach
-     *
      * @return array
      *
      * @throws NonUniqueResultException
      */
     private function validateCoachClubConditions(Coach $coach)
     {
+        $errors = [];
+
+        if (!$coach->getClub() instanceof Club) {
+            return $errors;
+        }
+
         $errors = $this->validateSalaries($coach->getClub());
 
         return $errors;

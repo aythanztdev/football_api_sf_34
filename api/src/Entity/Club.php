@@ -158,7 +158,7 @@ class Club
 
         // set (or unset) the owning side of the relation if necessary
         $newClub = null === $coach ? null : $this;
-        if ($coach->getClub() !== $newClub) {
+        if ($coach !== null && $coach->getClub() !== $newClub) {
             $coach->setClub($newClub);
         }
 
