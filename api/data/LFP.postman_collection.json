@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "838d0b02-1495-46ac-8768-5346896fbdfd",
+		"_postman_id": "f3ada8fe-bf38-4bf6-8b2c-3fbdc33219b4",
 		"name": "LFP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Fútbol Club Barcelona\",\n\t\"shield\": 1,\n\t\"budget\": 3000000\n}",
+							"raw": "{\n\t\"name\": \"Real Betis Balompié\",\n\t\"shield\": 1,\n\t\"budget\": 3000000\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -90,7 +90,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"budget\": 2000000\n}",
+							"raw": "{\n\t\"name\": \"Real Betis Balompié\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -124,7 +124,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Unión Deportiva Las Palmas\",\n\t\"budget\": 900000,\n\t\"shield\": 1\n}",
+							"raw": "{\n\t\"name\": \"Real Betis Balompié\",\n\t\"budget\": 900000,\n\t\"shield\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -139,6 +139,25 @@
 							"path": [
 								"clubs",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Players by club",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/clubs/1/players",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"clubs",
+								"1",
+								"players"
 							]
 						}
 					},
@@ -164,7 +183,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Mendoza\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"birthday\": \"1980-10-28\",\n\t\"position\": \"FORWARD\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 20000,\n\t\"club\": 5\n}",
+							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"birthday\": \"28-10-1980\",\n\t\"position\": \"FORWARD\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 200000,\n\t\"club\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -232,7 +251,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"salary\": 20000\n}",
+							"raw": "{\n\t\"birthday\": \"08-01-1991\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -266,7 +285,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"birthday\": \"1980-10-28\",\n\t\"position\": \"DEFENDER\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 10000,\n\t\"club\": 1\n}",
+							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"birthday\": \"28-10-1980\",\n\t\"position\": \"DEFENDER\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 100000,\n\t\"club\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -299,6 +318,25 @@
 							"path": [
 								"players",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Club by player",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/players/1/club",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"players",
+								"1",
+								"club"
 							]
 						}
 					},

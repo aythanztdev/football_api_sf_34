@@ -39,10 +39,12 @@ class Asset
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
     /**
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */

@@ -20,7 +20,7 @@ class NotificationService
     }
 
     /**
-     * @param $user
+     * @param mixed $user
      * @param string $type
      *
      * @throws ServiceNotAvailable

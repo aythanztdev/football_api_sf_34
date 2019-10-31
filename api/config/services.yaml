@@ -40,3 +40,7 @@ services:
     App\Service\NotificationService:
         arguments:
             $notificationServiceStatus: '%NOTIFICATION_SERVICE_STATUS%'
+
+    App\Normalizer\DateTimeNormalizer:
+        tags:
+            - { name: serializer.normalizer }
