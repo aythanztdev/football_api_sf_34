@@ -2,7 +2,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.0.8",
+        "php": "^7.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.8",
@@ -21,6 +21,7 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.2",
+        "phpstan/phpstan": "^0.11.19",
         "symfony/maker-bundle": "^1.14",
         "symfony/phpunit-bridge": "^4.3",
         "symfony/var-dumper": "^3.4"

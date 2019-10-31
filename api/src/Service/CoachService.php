@@ -36,9 +36,7 @@ class CoachService extends AbstractService
         $this->save();
     }
 
-    /**
-     * @param $coach
-     */
+
     public function delete($coach)
     {
         $this->remove($coach);

@@ -18,7 +18,6 @@ class FileUploaderService
 
     public function upload(UploadedFile $file)
     {
-        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $fileName = $this->relativeTargetDirectory.'/'.uniqid().'.'.$file->guessExtension();
 
         try {

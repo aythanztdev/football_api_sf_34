@@ -21,7 +21,7 @@ class ValidateService
 
     /**
      * @param Player $player
-     * @param $lastClub
+     * @param mixed $lastClub
      * @return array
      *
      * @throws NonUniqueResultException
@@ -66,7 +66,7 @@ class ValidateService
 
     /**
      * @param Player $player
-     * @param $lastClub
+     * @param mixed $lastClub
      *
      * @return array
      *
@@ -113,7 +113,7 @@ class ValidateService
      *
      * @throws NonUniqueResultException
      */
-    private function validateSalaries(Club $club, float $playerSalary = 0)
+    private function validateSalaries(Club $club, float $playerSalary = 0.0)
     {
         $errors = [];
 
@@ -132,6 +132,13 @@ class ValidateService
         return $errors;
     }
 
+    /**
+     * @param Player $player
+     *
+     * @return array
+     *
+     * @throws \Exception
+     */
     private function validateAge(Player $player)
     {
         $errors = [];

@@ -38,9 +38,6 @@ class PlayerService extends AbstractService
         $this->save();
     }
 
-    /**
-     * @param $player
-     */
     public function delete($player)
     {
         $this->remove($player);

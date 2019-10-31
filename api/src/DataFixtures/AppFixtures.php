@@ -38,7 +38,7 @@ class AppFixtures extends Fixture
             for ($ip = 0; $ip < $professionalPlayers; $ip++) {
                 $player = new Player();
                 $player->setName(sprintf('%s-Player-Prof-%s', $clubName, $ip));
-                $player->setEmail(sprintf('testcllfp@gmail.com', $player->getName()));
+                $player->setEmail('testcllfp@gmail.com');
 
                 $randomDate = rand(315584535, 946736535);
                 $date = new \DateTime();
@@ -62,7 +62,7 @@ class AppFixtures extends Fixture
             $juniorPlayers = rand(0, 7);
             for ($ij = 0; $ij < $juniorPlayers; $ij++) {
                 $player = new Player();
-                $player->setName(sprintf('testcllfp@gmail.com', $player->getName()));
+                $player->setName('testcllfp@gmail.com');
                 $player->setEmail('testcllfp@gmail.com');
 
                 $randomDate = rand(915200535, 1262355735);
