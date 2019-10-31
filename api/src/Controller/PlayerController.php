@@ -72,6 +72,7 @@ class PlayerController extends AbstractFOSRestController
      * @return JsonResponse|Response
      *
      * @throws NonUniqueResultException
+     * @throws \App\Exception\ServiceNotAvailable
      */
     public function postPlayerAction(Request $request)
     {

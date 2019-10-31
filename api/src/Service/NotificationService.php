@@ -2,9 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\Coach;
-use App\Entity\Player;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use App\Exception\ServiceNotAvailable;
 
 class NotificationService
 {
@@ -21,6 +19,12 @@ class NotificationService
         $this->notificationServiceStatus = $notificationServiceStatus;
     }
 
+    /**
+     * @param $user
+     * @param string $type
+     *
+     * @throws ServiceNotAvailable
+     */
     public function send($user, string $type)
     {
         if(!(bool)$this->notificationServiceStatus) {
@@ -28,14 +32,12 @@ class NotificationService
         }
 
         switch ($type) {
-            case self::TYPE_EMAIL:
-                $this->mailerService->handleEmail($user->getName(), $user->getEmail());
-                break;
-
             case self::TYPE_SMS:
             case self::TYPE_WHATSAPP:
+                throw new ServiceNotAvailable('Notifications channel still not available');
                 break;
 
+            case self::TYPE_EMAIL:
             default:
                 $this->mailerService->handleEmail($user->getName(), $user->getEmail());
         }
