@@ -49,13 +49,11 @@ class Club
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Player", mappedBy="club")
-     * @Groups({"club"})
      */
     private $players;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Coach", mappedBy="club")
-     * @Groups({"club"})
      */
     private $coach;
 

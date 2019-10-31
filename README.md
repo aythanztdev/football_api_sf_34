@@ -55,10 +55,8 @@ docker exec -it lfp-api-php php api/bin/console doctrine:schema:update --force
 
 Populate database with random data
 ```
-docker exec -it lfp-api-php /bin/bash
-cd api
-php bin/console doctrine:fixtures:load
-exit
+docker exec -it lfp-api-php php api/bin/console doctrine:fixtures:load
+write yes and enter
 ```
 
 #

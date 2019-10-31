@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
                 $player->setType($playerElement['type']);
                 $player->setPosition($playerElement['position']);
 
-                $birthday = DateTime::createFromFormat( 'Y-m-d', $playerElement['birthday']);
+                $birthday = DateTime::createFromFormat( 'd-m-Y', $playerElement['birthday']);
                 $player->setBirthday($birthday);
 
                 $manager->persist($player);
@@ -70,7 +70,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Eden Hazard',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1991-1-7',
+                                'birthday' => '7-1-1991',
                                 'salary' => 1500000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_FORWARD
@@ -79,7 +79,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'James Rodríguez',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1991-6-12',
+                                'birthday' => '12-6-1991',
                                 'salary' => 2000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_MIDFIELD
@@ -88,7 +88,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Gareth Bale',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1989-7-16',
+                                'birthday' => '16-7-1989',
                                 'salary' => 3000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_MIDFIELD
@@ -97,7 +97,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Karim Benzema',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1987-12-19',
+                                'birthday' => '19-12-1987',
                                 'salary' => 2000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_FORWARD
@@ -106,7 +106,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Tony Fuidias',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '2001-4-15',
+                                'birthday' => '15-4-2001',
                                 'salary' => 15000,
                                 'type' => Player::TYPE_JUNIOR,
                                 'position' => Player::POSITION_GOALKEEPER
@@ -115,7 +115,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Santos',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '2001-1-3',
+                                'birthday' => '3-1-2001',
                                 'salary' => 0,
                                 'type' => Player::TYPE_JUNIOR,
                                 'position' => Player::POSITION_DEFENDER
@@ -137,7 +137,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Lionel Messi',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1987-1-24',
+                                'birthday' => '24-1-1987',
                                 'salary' => 5000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_FORWARD
@@ -146,7 +146,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Ivan Rakitić',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1988-3-10',
+                                'birthday' => '10-3-1988',
                                 'salary' => 2000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_MIDFIELD
@@ -155,7 +155,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Gerard Piqué',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1988-2-2',
+                                'birthday' => '2-2-1988',
                                 'salary' => 4000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_MIDFIELD
@@ -164,7 +164,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Sergi Puig',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1998-11-19',
+                                'birthday' => '19-11-1998',
                                 'salary' => 200000,
                                 'type' => Player::TYPE_JUNIOR,
                                 'position' => Player::POSITION_GOALKEEPER
@@ -173,7 +173,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Van Beijnen',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1999-1-7',
+                                'birthday' => '7-1-1999',
                                 'salary' => 150000,
                                 'type' => Player::TYPE_JUNIOR,
                                 'position' => Player::POSITION_DEFENDER
@@ -194,7 +194,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Marcos Llorente',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1995-1-30',
+                                'birthday' => '30-1-1995',
                                 'salary' => 900000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_MIDFIELD
@@ -203,7 +203,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Jan Oblak',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1993-1-7',
+                                'birthday' => '7-1-1993',
                                 'salary' => 1000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_GOALKEEPER
@@ -212,7 +212,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Santiago Arias',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1992-1-13',
+                                'birthday' => '13-1-1992',
                                 'salary' => 800000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_DEFENDER
@@ -221,7 +221,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Vitolo Machín',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '1989-2-11',
+                                'birthday' => '11-2-1989',
                                 'salary' => 1500000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_FORWARD
@@ -230,7 +230,7 @@ class AppFixtures extends Fixture
                             [
                                 'name' => 'Manuel Sánchez',
                                 'email' => 'testcllfp@gmail.com',
-                                'birthday' => '2000-8-20',
+                                'birthday' => '20-8-2000',
                                 'salary' => 1000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
                                 'position' => Player::POSITION_DEFENDER

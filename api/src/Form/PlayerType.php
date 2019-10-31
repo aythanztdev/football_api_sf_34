@@ -26,7 +26,7 @@ class PlayerType extends AbstractType
             ->add('email', EmailType::class)
             ->add('birthday', DateTimeType::class, [
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
+                'format' => 'dd-MM-yyyy',
             ])
             ->add('position', TextType::class)
             ->add('type', TextType::class)

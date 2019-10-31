@@ -63,8 +63,8 @@ class PlayerController extends AbstractFOSRestController
      */
     public function getPlayerAction(Player $player)
     {
-        $playersSerialized = $this->serializer->serialize($player, 'json', ['groups' => ['player']]);
-        return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
+        $playerSerialized = $this->serializer->serialize($player, 'json', ['groups' => ['player']]);
+        return new JsonResponse($playerSerialized, Response::HTTP_OK, [], true);
     }
 
     /**

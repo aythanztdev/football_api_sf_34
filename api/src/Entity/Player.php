@@ -28,14 +28,14 @@ class Player
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"player", "club"})
+     * @Groups({"player", "clubPlayer"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Groups({"player", "club"})
+     * @Groups({"player", "clubPlayer"})
      */
     private $name;
 
@@ -43,14 +43,14 @@ class Player
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Assert\Email
-     * @Groups({"player", "club"})
+     * @Groups({"player", "clubPlayer"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotBlank
-     * @Groups({"player", "club"})
+     * @Groups({"player", "clubPlayer"})
      */
     private $birthday;
 
@@ -58,7 +58,7 @@ class Player
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Assert\Choice(callback="getPositions")
-     * @Groups({"player", "club"})
+     * @Groups({"player", "clubPlayer"})
      */
     private $position;
 
@@ -66,13 +66,13 @@ class Player
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Assert\Choice(callback="getTypes")
-     * @Groups({"player", "club"})
+     * @Groups({"player", "clubPlayer"})
      */
     private $type;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2)
-     * @Groups({"player", "club"})
+     * @Groups({"player", "clubPlayer"})
      */
     private $salary = 0;
 

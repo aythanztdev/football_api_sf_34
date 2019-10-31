@@ -44,8 +44,8 @@ class ClubController extends AbstractFOSRestController
     {
         $clubs = $this->clubService->getAll();
 
-        $playersSerialized = $this->serializer->serialize($clubs, 'json', ['groups' => ['club']]);
-        return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
+        $clubsSerialized = $this->serializer->serialize($clubs, 'json', ['groups' => ['club']]);
+        return new JsonResponse($clubsSerialized, Response::HTTP_OK, [], true);
     }
 
     /**
@@ -55,7 +55,18 @@ class ClubController extends AbstractFOSRestController
      */
     public function getClubAction(Club $club)
     {
-        $playersSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
+        $clubSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
+        return new JsonResponse($clubSerialized, Response::HTTP_OK, [], true);
+    }
+
+    /**
+     * @param Club $club
+     *
+     * @return Response
+     */
+    public function getClubPlayersAction(Club $club)
+    {
+        $playersSerialized = $this->serializer->serialize($club->getPlayers(), 'json', ['groups' => ['clubPlayer']]);
         return new JsonResponse($playersSerialized, Response::HTTP_OK, [], true);
     }
 
@@ -75,8 +86,8 @@ class ClubController extends AbstractFOSRestController
 
         $this->clubService->persistAndSave($form->getData());
 
-        $playerSerialized = $this->serializer->serialize($form->getData(), 'json', ['groups' => ['club']]);
-        return new JsonResponse($playerSerialized, Response::HTTP_OK, [], true);
+        $clubSerialized = $this->serializer->serialize($form->getData(), 'json', ['groups' => ['club']]);
+        return new JsonResponse($clubSerialized, Response::HTTP_OK, [], true);
     }
 
     /**
@@ -95,8 +106,8 @@ class ClubController extends AbstractFOSRestController
 
         $this->clubService->save();
 
-        $playerSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
-        return new JsonResponse($playerSerialized, Response::HTTP_OK, [], true);
+        $clubSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
+        return new JsonResponse($clubSerialized, Response::HTTP_OK, [], true);
     }
 
     /**
@@ -115,8 +126,8 @@ class ClubController extends AbstractFOSRestController
 
         $this->clubService->save();
 
-        $playerSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
-        return new JsonResponse($playerSerialized, Response::HTTP_OK, [], true);
+        $clubSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
+        return new JsonResponse($clubSerialized, Response::HTTP_OK, [], true);
     }
 
     /**
