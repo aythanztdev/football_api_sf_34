@@ -31,11 +31,6 @@ class Asset
     private $path;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Club", mappedBy="shield")
-     */
-    private $club;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -63,24 +58,6 @@ class Asset
     public function setPath(string $path): self
     {
         $this->path = $path;
-
-        return $this;
-    }
-
-    public function getClub(): ?Club
-    {
-        return $this->club;
-    }
-
-    public function setClub(?Club $club): self
-    {
-        $this->club = $club;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newShield = null === $club ? null : $this;
-        if ($club->getShield() !== $newShield) {
-            $club->setShield($newShield);
-        }
 
         return $this;
     }

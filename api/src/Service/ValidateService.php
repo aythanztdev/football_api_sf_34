@@ -25,6 +25,7 @@ class ValidateService
      * @return array
      *
      * @throws NonUniqueResultException
+     * @throws \Exception
      */
     public function playerValidation(Player $player, $lastClub = null)
     {

@@ -42,7 +42,7 @@ class Club
     private $budget;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Asset", inversedBy="club")
+     * @ORM\OneToOne(targetEntity="App\Entity\Asset")
      * @Groups({"club"})
      */
     private $shield;

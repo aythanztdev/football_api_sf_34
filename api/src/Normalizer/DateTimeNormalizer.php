@@ -4,10 +4,11 @@ namespace App\Normalizer;
 
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\Normalizer\SerializerAwareNormalizer;
+use Symfony\Component\Serializer\SerializerAwareTrait;
 
-class DateTimeNormalizer extends SerializerAwareNormalizer implements NormalizerInterface, DenormalizerInterface
+class DateTimeNormalizer implements NormalizerInterface, DenormalizerInterface
 {
+    use SerializerAwareTrait;
     /**
      * {@inheritdoc}
      */
