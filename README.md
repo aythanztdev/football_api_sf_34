@@ -64,6 +64,7 @@ You can show some data visiting:
 ```
 http://lfp-api.loc/api/clubs
 http://lfp-api.loc/api/clubs/1
+http://lfp-api.loc/api/clubs/1/players
 http://lfp-api.loc/api/players
 http://lfp-api.loc/api/players/1
 http://lfp-api.loc/api/coachs

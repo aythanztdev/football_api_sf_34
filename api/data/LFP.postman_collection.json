@@ -322,25 +322,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Club by player",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{URL}}/players/1/club",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"players",
-								"1",
-								"club"
-							]
-						}
-					},
-					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}

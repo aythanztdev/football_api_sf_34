@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14d113694e112909dc6f88adee411414",
+    "content-hash": "130638c7206057b146c8619928a77c99",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -4482,6 +4482,77 @@
             "time": "2018-06-13T13:22:40+00:00"
         },
         {
+            "name": "liip/test-fixtures-bundle",
+            "version": "1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/liip/LiipTestFixturesBundle.git",
+                "reference": "c137ef44fdaa496c8e0631f5a86521a13541d8f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/liip/LiipTestFixturesBundle/zipball/c137ef44fdaa496c8e0631f5a86521a13541d8f0",
+                "reference": "c137ef44fdaa496c8e0631f5a86521a13541d8f0",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "^2.0",
+                "php": "^7.1",
+                "symfony/framework-bundle": "^3.4 || ^4.1"
+            },
+            "require-dev": {
+                "doctrine/data-fixtures": "^1.3",
+                "doctrine/doctrine-bundle": "^1.8",
+                "doctrine/doctrine-fixtures-bundle": "^3.0.2",
+                "doctrine/orm": "^2.6",
+                "jackalope/jackalope-doctrine-dbal": "^1.3",
+                "phpunit/phpunit": "^7.5 || ^8.0",
+                "symfony/monolog-bundle": "^3.2",
+                "symfony/phpunit-bridge": "^3.4 || ^4.1",
+                "symfony/symfony": "^3.4 || ^4.1",
+                "theofidry/alice-data-fixtures": "^1.0.1"
+            },
+            "suggest": {
+                "doctrine/dbal": "Required when using the fixture loading functionality with an ORM and SQLite",
+                "doctrine/doctrine-fixtures-bundle": "Required when using the fixture loading functionality",
+                "doctrine/orm": "Required when using the fixture loading functionality with an ORM and SQLite",
+                "hautelook/alice-bundle": "Required when using loadFixtureFiles functionality with custom providers",
+                "theofidry/alice-data-fixtures": "Required when using loadFixtureFiles functionality"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Liip\\TestFixturesBundle\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Liip AG",
+                    "homepage": "http://www.liip.ch/"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/liip/LiipTestFixturesBundle/contributors"
+                }
+            ],
+            "description": "This bundles enables efficient loading of Doctrine fixtures in functional test-cases for Symfony applications",
+            "keywords": [
+                "fixtures",
+                "symfony",
+                "testing"
+            ],
+            "time": "2019-10-14T19:19:32+00:00"
+        },
+        {
             "name": "nette/bootstrap",
             "version": "v3.0.1",
             "source": {
@@ -5181,6 +5252,173 @@
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
             "time": "2019-10-22T20:20:22+00:00"
+        },
+        {
+            "name": "symfony/browser-kit",
+            "version": "v3.4.32",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/browser-kit.git",
+                "reference": "abe4bf2c934ddd1fd490a7d9147df7827b5fff0f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/abe4bf2c934ddd1fd490a7d9147df7827b5fff0f",
+                "reference": "abe4bf2c934ddd1fd490a7d9147df7827b5fff0f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/dom-crawler": "~2.8|~3.0|~4.0"
+            },
+            "require-dev": {
+                "symfony/css-selector": "~2.8|~3.0|~4.0",
+                "symfony/process": "~2.8|~3.0|~4.0"
+            },
+            "suggest": {
+                "symfony/process": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\BrowserKit\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony BrowserKit Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-09-10T10:13:59+00:00"
+        },
+        {
+            "name": "symfony/css-selector",
+            "version": "v3.4.32",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "f819f71ae3ba6f396b4c015bd5895de7d2f1f85f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/f819f71ae3ba6f396b4c015bd5895de7d2f1f85f",
+                "reference": "f819f71ae3ba6f396b4c015bd5895de7d2f1f85f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony CssSelector Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-10-01T11:57:37+00:00"
+        },
+        {
+            "name": "symfony/dom-crawler",
+            "version": "v3.4.32",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/dom-crawler.git",
+                "reference": "29cffc38a38f2a8ed7e494c9cea2f890a40c2359"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/29cffc38a38f2a8ed7e494c9cea2f890a40c2359",
+                "reference": "29cffc38a38f2a8ed7e494c9cea2f890a40c2359",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "require-dev": {
+                "symfony/css-selector": "~2.8|~3.0|~4.0"
+            },
+            "suggest": {
+                "symfony/css-selector": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\DomCrawler\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony DomCrawler Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-08-30T17:42:32+00:00"
         },
         {
             "name": "symfony/maker-bundle",

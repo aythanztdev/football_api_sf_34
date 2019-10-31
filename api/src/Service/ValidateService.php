@@ -113,7 +113,7 @@ class ValidateService
      *
      * @throws NonUniqueResultException
      */
-    private function validateSalaries(Club $club, float $playerSalary = 0.0)
+    public function validateSalaries(Club $club, float $playerSalary = 0.0)
     {
         $errors = [];
 
