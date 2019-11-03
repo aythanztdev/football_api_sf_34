@@ -26,7 +26,7 @@ abstract class AbstractService
     }
 
     /**
-     * @param $object
+     * @param mixed $object
      */
     public function saveThisObjectOnly($object)
     {
@@ -34,7 +34,7 @@ abstract class AbstractService
     }
 
     /**
-     * @param $object
+     * @param mixed $object
      */
     public function remove($object)
     {

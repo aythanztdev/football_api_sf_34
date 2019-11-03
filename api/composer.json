@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/annotations": "^1.8",
+        "friendsofphp/php-cs-fixer": "^2.15",
         "friendsofsymfony/rest-bundle": "^2.6",
         "sensio/framework-extra-bundle": "~3.0",
         "sensiolabs/security-checker": "^6.0",
