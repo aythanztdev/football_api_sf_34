@@ -22,8 +22,7 @@ class PlayerService extends AbstractService
         EntityManagerInterface $entityManager,
         PlayerRepository $playerRepository,
         MailerService $mailerService
-    )
-    {
+    ) {
         $this->playerRepository = $playerRepository;
         $this->mailerService = $mailerService;
         parent::__construct($entityManager);

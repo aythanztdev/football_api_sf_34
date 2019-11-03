@@ -3,7 +3,6 @@
 
 namespace App\Service;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 
 abstract class AbstractService

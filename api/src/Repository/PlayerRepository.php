@@ -30,7 +30,7 @@ class PlayerRepository extends ServiceEntityRepository
      */
     public function getTotalSalaries(Club $club)
     {
-            return $this->createQueryBuilder('p')
+        return $this->createQueryBuilder('p')
                 ->select('SUM(p.salary)')
                 ->andWhere('p.club = :club')
                 ->setParameter('club', $club)

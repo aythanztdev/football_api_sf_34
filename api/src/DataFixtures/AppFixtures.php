@@ -51,9 +51,10 @@ class AppFixtures extends Fixture
                 $player->setType($playerElement['type']);
                 $player->setPosition($playerElement['position']);
 
-                $birthday = DateTime::createFromFormat( 'd-m-Y', $playerElement['birthday']);
-                if(empty($birthday))
+                $birthday = DateTime::createFromFormat('d-m-Y', $playerElement['birthday']);
+                if (empty($birthday)) {
                     throw new DataBadFormmatedException('Birthday cannot be null');
+                }
 
                 $player->setBirthday($birthday);
 

@@ -3,7 +3,6 @@
 
 namespace App\Service;
 
-
 use App\Entity\Club;
 use App\Entity\Coach;
 use App\Repository\CoachRepository;
@@ -22,8 +21,7 @@ class CoachService extends AbstractService
     public function __construct(
         EntityManagerInterface $entityManager,
         CoachRepository $coachRepository
-    )
-    {
+    ) {
         $this->coachRepository = $coachRepository;
         parent::__construct($entityManager);
     }
@@ -57,14 +55,14 @@ class CoachService extends AbstractService
     public function unsetLastCoachOnClub(Coach $coach)
     {
         $club = $coach->getClub();
-        if (!$club instanceof Club)
+        if (!$club instanceof Club) {
             return;
+        }
 
         $lastCoach = $this->coachRepository->findOneBy(['club' => $club]);
         if ($lastCoach instanceof Coach && $lastCoach !== $coach) {
             $lastCoach->setClub(null);
             $this->saveThisObjectOnly($lastCoach);
         }
-
     }
 }

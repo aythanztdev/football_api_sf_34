@@ -31,5 +31,4 @@ class AssetService extends AbstractService
         $fullPath = sprintf('%s%s', $host, $assetPath);
         $asset->setPath($fullPath);
     }
-
 }

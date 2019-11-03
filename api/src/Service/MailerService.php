@@ -16,12 +16,12 @@ class MailerService
         $message = (new \Swift_Message('Welcome'))
             ->setFrom('testcllfp@gmail.com')
             ->setTo($toEmail)
-            ->setBody(sprintf('Welcome %s', $toName),
+            ->setBody(
+                sprintf('Welcome %s', $toName),
                 'text/plain'
             )
         ;
 
         $this->mailer->send($message);
     }
-
 }

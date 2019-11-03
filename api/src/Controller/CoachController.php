@@ -37,8 +37,7 @@ class CoachController extends AbstractFOSRestController
         ValidateService $validateService,
         SerializerInterface $serializer,
         NotificationService $notificationService
-    )
-    {
+    ) {
         $this->coachService = $coachService;
         $this->validateService = $validateService;
         $this->serializer = $serializer;

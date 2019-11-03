@@ -3,7 +3,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Asset;
 use App\Form\AssetType;
 use App\Service\AssetService;
@@ -24,8 +23,8 @@ class AssetController extends AbstractFOSRestController
     public function __construct(
         AssetService $assetService,
         FileUploaderService $fileUploaderService,
-        SerializerInterface $serializer)
-    {
+        SerializerInterface $serializer
+    ) {
         $this->assetService = $assetService;
         $this->fileUploaderService = $fileUploaderService;
         $this->serializer = $serializer;

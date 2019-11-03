@@ -39,5 +39,4 @@ class CoachType extends AbstractType
             'data_class' => Coach::class,
         ]);
     }
-
 }

@@ -37,8 +37,7 @@ class PlayerController extends AbstractFOSRestController
         ValidateService $validateService,
         SerializerInterface $serializer,
         NotificationService $notificationService
-    )
-    {
+    ) {
         $this->playerService = $playerService;
         $this->validateService = $validateService;
         $this->serializer = $serializer;

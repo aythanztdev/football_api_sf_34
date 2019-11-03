@@ -19,8 +19,7 @@ class ClubService extends AbstractService
     public function __construct(
         EntityManagerInterface $entityManager,
         ClubRepository $playerRepository
-    )
-    {
+    ) {
         $this->clubRepository = $playerRepository;
         parent::__construct($entityManager);
     }

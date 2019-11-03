@@ -25,8 +25,8 @@ class ValidateService
      */
     public function __construct(
         PlayerRepository $playerRepository,
-        ClubRepository $clubRepository)
-    {
+        ClubRepository $clubRepository
+    ) {
         $this->playerRepository = $playerRepository;
         $this->clubRepository = $clubRepository;
     }

@@ -48,5 +48,4 @@ class PlayerType extends AbstractType
             'data_class' => Player::class,
         ]);
     }
-
 }

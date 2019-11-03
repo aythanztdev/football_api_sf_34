@@ -35,8 +35,7 @@ class ClubController extends AbstractFOSRestController
         SerializerInterface $serializer,
         FileUploaderService $fileUploaderService,
         ValidateService $validateService
-    )
-    {
+    ) {
         $this->clubService = $clubService;
         $this->serializer = $serializer;
         $this->fileUploaderService = $fileUploaderService;

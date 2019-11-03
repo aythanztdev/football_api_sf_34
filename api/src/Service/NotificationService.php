@@ -27,7 +27,7 @@ class NotificationService
      */
     public function send($user, string $type)
     {
-        if(!(bool)$this->notificationServiceStatus) {
+        if (!(bool)$this->notificationServiceStatus) {
             return;
         }
 
