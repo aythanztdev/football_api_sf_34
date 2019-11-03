@@ -20,7 +20,7 @@ class Coach
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"coach"})
+     * @Groups({"coach", "club"})
      */
     private $id;
 

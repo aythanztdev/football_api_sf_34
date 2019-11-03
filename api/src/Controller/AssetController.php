@@ -9,6 +9,7 @@ use App\Form\AssetType;
 use App\Service\AssetService;
 use App\Service\FileUploaderService;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,7 +48,7 @@ class AssetController extends AbstractFOSRestController
         $shield = $request->files->get('file');
         if ($shield) {
             $assetPath = $this->fileUploaderService->upload($shield);
-            $this->assetService->setPath($asset, $assetPath);
+            $this->assetService->setPath($asset, $request->getSchemeAndHttpHost(), $assetPath);
         }
 
         $this->assetService->persistAndSave($form->getData());
@@ -60,7 +61,7 @@ class AssetController extends AbstractFOSRestController
      * @param Request $request
      * @param Asset $asset
      *
-     * @return \Symfony\Component\Form\FormInterface
+     * @return FormInterface
      */
     private function assetForm(Request $request, Asset $asset)
     {

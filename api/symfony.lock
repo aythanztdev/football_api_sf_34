@@ -174,6 +174,18 @@
     "sensio/framework-extra-bundle": {
         "version": "v3.0.29"
     },
+    "sensiolabs/security-checker": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.0",
+            "ref": "160c9b600564faa1224e8f387d49ef13ceb8b793"
+        },
+        "files": [
+            "config/packages/security_checker.yaml"
+        ]
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.1"
     },
@@ -263,6 +275,12 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v4.3.5"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v1.1.7"
+    },
     "symfony/http-foundation": {
         "version": "v3.4.32"
     },
@@ -283,6 +301,9 @@
             "version": "1.0",
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
+    },
+    "symfony/mime": {
+        "version": "v4.3.5"
     },
     "symfony/options-resolver": {
         "version": "v3.4.32"
@@ -319,6 +340,9 @@
         "version": "v1.12.0"
     },
     "symfony/polyfill-php72": {
+        "version": "v1.12.0"
+    },
+    "symfony/polyfill-php73": {
         "version": "v1.12.0"
     },
     "symfony/property-access": {

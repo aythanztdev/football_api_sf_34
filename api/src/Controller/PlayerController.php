@@ -88,7 +88,7 @@ class PlayerController extends AbstractFOSRestController
         }
 
         $this->playerService->persistAndSave($form->getData());
-        $this->notificationService->send($form->getData(), $this->notificationService::TYPE_EMAIL);
+        $this->notificationService->send($form->getData(), NotificationService::TYPE_EMAIL);
 
         $playersSerialized = $this->serializer->serialize($form->getData(), 'json', ['groups' => ['player']]);
         return new JsonResponse($playersSerialized, Response::HTTP_CREATED, [], true);
@@ -161,6 +161,14 @@ class PlayerController extends AbstractFOSRestController
         return new JsonResponse('', Response::HTTP_OK, [], true);
     }
 
+    /**
+     * @param Request $request
+     * @param Player $player
+     *
+     * @param bool $clearMissing
+     *
+     * @return FormInterface
+     */
     private function playerForm(Request $request, Player $player, $clearMissing = true)
     {
         $form = $this->createForm(PlayerType::class, $player);
@@ -169,6 +177,12 @@ class PlayerController extends AbstractFOSRestController
         return $form;
     }
 
+    /**
+     * @param FormInterface $form
+     * @param array $errors
+     *
+     * @return FormInterface
+     */
     private function handleErrorsForm(FormInterface $form, array $errors)
     {
         foreach ($errors as $error) {

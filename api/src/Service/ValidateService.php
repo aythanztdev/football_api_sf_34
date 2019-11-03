@@ -6,6 +6,7 @@ use App\Entity\Club;
 use App\Entity\Coach;
 use App\Entity\Player;
 use App\Exception\ClubException;
+use App\Repository\ClubRepository;
 use App\Repository\PlayerRepository;
 use Doctrine\ORM\NonUniqueResultException;
 
@@ -14,10 +15,20 @@ class ValidateService
     const MAX_AGE_JUNIOR = 23;
 
     private $playerRepository;
+    private $clubRepository;
 
-    public function __construct(PlayerRepository $playerRepository)
+    /**
+     * ValidateService constructor.
+     *
+     * @param PlayerRepository $playerRepository
+     * @param ClubRepository $clubRepository
+     */
+    public function __construct(
+        PlayerRepository $playerRepository,
+        ClubRepository $clubRepository)
     {
         $this->playerRepository = $playerRepository;
+        $this->clubRepository = $clubRepository;
     }
 
     /**
@@ -64,6 +75,17 @@ class ValidateService
         return $errors;
     }
 
+    public function clubValidation(Club $club)
+    {
+        $errors = [];
+
+        $clubWithThisShield =  $this->clubRepository->findOneBy(['shield' => $club->getShield()]);
+        if ($clubWithThisShield instanceof Club && $clubWithThisShield !== $club) {
+            $errors[] = 'This shield belong to other club already.';
+        }
+
+        return $errors;
+    }
 
     /**
      * @param Player $player
@@ -83,7 +105,11 @@ class ValidateService
 
         $playerSalary = $player->getSalary();
         if ($player->getType() === Player::TYPE_PROFESSIONAL && empty($playerSalary)) {
-            $errors[] = 'This value should not be blank or 0';
+            $errors[] = 'Salary must not be blank or 0';
+        }
+
+        if ($player->getType() === Player::TYPE_JUNIOR && !empty($playerSalary)) {
+            $errors[] = 'Salary must be blank or 0 for junior players';
         }
 
         if (empty($playerSalary)) {
@@ -161,7 +187,10 @@ class ValidateService
         $dateNow = new \DateTime();
         $dateNow->setTime(0, 0, 0);
 
-        $datePlayer = $player->getBirthday()->setTime(0, 0, 0);
+        $datePlayer = new \DateTime();
+        $datePlayer->setTimestamp($player->getBirthday()->getTimestamp());
+
+        $datePlayer = $datePlayer->setTime(0, 0, 0);
         $datePlayer->add(new \DateInterval(sprintf('P%sY', self::MAX_AGE_JUNIOR)));
 
         if ($dateNow > $datePlayer) {

@@ -25,6 +25,17 @@ abstract class AbstractService
         $this->entityManager->flush();
     }
 
+    /**
+     * @param $object
+     */
+    public function saveThisObjectOnly($object)
+    {
+        $this->entityManager->flush($object);
+    }
+
+    /**
+     * @param $object
+     */
     public function remove($object)
     {
         $this->entityManager->remove($object);

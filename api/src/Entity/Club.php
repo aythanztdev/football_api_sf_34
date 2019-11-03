@@ -39,10 +39,11 @@ class Club
      * @ORM\Column(type="decimal", precision=10, scale=2)
      * @Groups({"club"})
      */
-    private $budget;
+    private $budget = 0;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Asset")
+     * @Assert\NotBlank
      * @Groups({"club"})
      */
     private $shield;
@@ -54,6 +55,7 @@ class Club
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Coach", mappedBy="club")
+     * @Groups({"club"})
      */
     private $coach;
 

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Coach;
+use App\Exception\ServiceNotAvailableException;
 use App\Form\CoachType;
 use App\Service\CoachService;
 use App\Service\NotificationService;
@@ -66,27 +67,32 @@ class CoachController extends AbstractFOSRestController
         return new JsonResponse($coachsSerialized, Response::HTTP_OK, [], true);
     }
 
+
     /**
      * @param Request $request
+     *
      * @return JsonResponse|Response
      *
      * @throws NonUniqueResultException
+     * @throws ServiceNotAvailableException
      */
     public function postCoachAction(Request $request)
     {
-        $form = $this->coachForm($request, new Coach());
+        $coach = new Coach();
+        $form = $this->coachForm($request, $coach);
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
         }
 
-        $customErrors = $this->validateService->coachValidation($form->getData());
+        $customErrors = $this->validateService->coachValidation($coach);
         if (count($customErrors)) {
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
 
+        $this->coachService->unsetLastCoachOnClub($coach);
         $this->coachService->persistAndSave($form->getData());
-        $this->notificationService->send($form->getData(), $this->notificationService::TYPE_EMAIL);
+        $this->notificationService->send($coach, $this->notificationService::TYPE_EMAIL);
 
         $coachsSerialized = $this->serializer->serialize($form->getData(), 'json', ['groups' => ['coach']]);
         return new JsonResponse($coachsSerialized, Response::HTTP_CREATED, [], true);
@@ -112,6 +118,7 @@ class CoachController extends AbstractFOSRestController
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
 
+        $this->coachService->unsetLastCoachOnClub($coach);
         $this->coachService->save();
 
         $coachsSerialized = $this->serializer->serialize($coach, 'json', ['groups' => ['coach']]);
@@ -139,12 +146,20 @@ class CoachController extends AbstractFOSRestController
             return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
 
+        $this->coachService->unsetLastCoachOnClub($coach);
         $this->coachService->save();
 
         $coachsSerialized = $this->serializer->serialize($coach, 'json', ['groups' => ['coach']]);
         return new JsonResponse($coachsSerialized, Response::HTTP_OK, [], true);
     }
 
+    /**
+     * @param Request $request
+     * @param Coach $coach
+     * @param bool $clearMissing
+     *
+     * @return FormInterface
+     */
     private function coachForm(Request $request, Coach $coach, $clearMissing = true)
     {
         $form = $this->createForm(CoachType::class, $coach);
@@ -153,6 +168,12 @@ class CoachController extends AbstractFOSRestController
         return $form;
     }
 
+    /**
+     * @param FormInterface $form
+     * @param array $errors
+     *
+     * @return FormInterface
+     */
     private function handleErrorsForm(FormInterface $form, array $errors)
     {
         foreach ($errors as $error) {

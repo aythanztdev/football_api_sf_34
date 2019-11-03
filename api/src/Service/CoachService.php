@@ -4,6 +4,7 @@
 namespace App\Service;
 
 
+use App\Entity\Club;
 use App\Entity\Coach;
 use App\Repository\CoachRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -48,5 +49,22 @@ class CoachService extends AbstractService
     public function getAll()
     {
         return $this->coachRepository->findAll();
+    }
+
+    /**
+     * @param Coach $coach
+     */
+    public function unsetLastCoachOnClub(Coach $coach)
+    {
+        $club = $coach->getClub();
+        if (!$club instanceof Club)
+            return;
+
+        $lastCoach = $this->coachRepository->findOneBy(['club' => $club]);
+        if ($lastCoach instanceof Coach && $lastCoach !== $coach) {
+            $lastCoach->setClub(null);
+            $this->saveThisObjectOnly($lastCoach);
+        }
+
     }
 }

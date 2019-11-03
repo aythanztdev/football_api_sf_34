@@ -97,6 +97,11 @@ class Player
      */
     private $deletedAt;
 
+    public function __construct()
+    {
+        $this->birthday = new \DateTime();
+    }
+
     /* START DONT REMOVE */
     public static function getPositions()
     {
@@ -138,12 +143,12 @@ class Player
         return $this;
     }
 
-    public function getBirthday(): \DateTime
+    public function getBirthday(): \DateTimeInterface
     {
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTime $birthday): self
+    public function setBirthday(\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
 

@@ -6,7 +6,9 @@ use App\Entity\Club;
 use App\Form\ClubType;
 use App\Service\ClubService;
 use App\Service\FileUploaderService;
-use Symfony\Component\DependencyInjection\Tests\Compiler\C;
+use App\Service\ValidateService;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +20,7 @@ class ClubController extends AbstractFOSRestController
     private $clubService;
     private $serializer;
     private $fileUploaderService;
+    private $validateService;
 
     /**
      * ClubController constructor.
@@ -25,16 +28,19 @@ class ClubController extends AbstractFOSRestController
      * @param ClubService $clubService
      * @param SerializerInterface $serializer
      * @param FileUploaderService $fileUploaderService
+     * @param ValidateService $validateService
      */
     public function __construct(
         ClubService $clubService,
         SerializerInterface $serializer,
-        FileUploaderService $fileUploaderService
+        FileUploaderService $fileUploaderService,
+        ValidateService $validateService
     )
     {
         $this->clubService = $clubService;
         $this->serializer = $serializer;
         $this->fileUploaderService = $fileUploaderService;
+        $this->validateService = $validateService;
     }
 
     /**
@@ -84,6 +90,11 @@ class ClubController extends AbstractFOSRestController
             return $this->handleView($this->view($form));
         }
 
+        $customErrors = $this->validateService->clubValidation($form->getData());
+        if (count($customErrors)) {
+            return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
+        }
+
         $this->clubService->persistAndSave($form->getData());
 
         $clubSerialized = $this->serializer->serialize($form->getData(), 'json', ['groups' => ['club']]);
@@ -102,6 +113,11 @@ class ClubController extends AbstractFOSRestController
 
         if (!$form->isValid()) {
             return $this->handleView($this->view($form));
+        }
+
+        $customErrors = $this->validateService->clubValidation($form->getData());
+        if (count($customErrors)) {
+            return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
         }
 
         $this->clubService->save();
@@ -124,6 +140,11 @@ class ClubController extends AbstractFOSRestController
             return $this->handleView($this->view($form));
         }
 
+        $customErrors = $this->validateService->clubValidation($form->getData());
+        if (count($customErrors)) {
+            return $this->handleView($this->view($this->handleErrorsForm($form, $customErrors)));
+        }
+
         $this->clubService->save();
 
         $clubSerialized = $this->serializer->serialize($club, 'json', ['groups' => ['club']]);
@@ -135,13 +156,28 @@ class ClubController extends AbstractFOSRestController
      * @param Club $club
      * @param bool $clearMissing
      *
-     * @return \Symfony\Component\Form\FormInterface
+     * @return FormInterface
      */
     private function clubForm(Request $request, Club $club, $clearMissing = true)
     {
         $form = $this->createForm(ClubType::class, $club);
         $data = array_merge($request->request->all(), $request->files->all());
         $form->submit($data, $clearMissing);
+
+        return $form;
+    }
+
+    /**
+     * @param FormInterface $form
+     * @param array $errors
+     *
+     * @return FormInterface
+     */
+    private function handleErrorsForm(FormInterface $form, array $errors)
+    {
+        foreach ($errors as $error) {
+            $form->addError(new FormError($error));
+        }
 
         return $form;
     }

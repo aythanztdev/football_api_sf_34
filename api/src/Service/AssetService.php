@@ -26,9 +26,10 @@ class AssetService extends AbstractService
         $this->save();
     }
 
-    public function setPath(Asset $asset, string $assetPath)
+    public function setPath(Asset $asset, string $host, string $assetPath)
     {
-        $asset->setPath($assetPath);
+        $fullPath = sprintf('%s%s', $host, $assetPath);
+        $asset->setPath($fullPath);
     }
 
 }
