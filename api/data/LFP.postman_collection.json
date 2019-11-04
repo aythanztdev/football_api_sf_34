@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Real Betis Balompié\",\n\t\"shield\": 1,\n\t\"budget\": 3000000\n}",
+							"raw": "{\n\t\"name\": \"Real Betis Balompié\",\n\t\"shield\": 4,\n\t\"budget\": 3000000\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -90,7 +90,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Real Betis Balompié\"\n}",
+							"raw": "{\n\t\"name\": \"Real Madrid Club\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -124,7 +124,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Real Betis Balompié\",\n\t\"budget\": 900000,\n\t\"shield\": 1\n}",
+							"raw": "{\n\t\"name\": \"Real Madrid\",\n\t\"budget\": 10000000,\n\t\"shield\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -183,7 +183,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"birthday\": \"28-10-1980\",\n\t\"position\": \"FORWARD\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 200000,\n\t\"club\": 1\n}",
+							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"testcllfp+20@gmail.com\",\n\t\"birthday\": \"28-10-1999\",\n\t\"position\": \"FORWARD\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 18345,\n\t\"club\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -251,7 +251,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"birthday\": \"08-01-1991\"\n}",
+							"raw": "{\n\t\"name\": \"Eden Hazard\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -285,7 +285,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"birthday\": \"28-10-1980\",\n\t\"position\": \"DEFENDER\",\n\t\"type\": \"PROFESSIONAL\",\n\t\"salary\": 100000,\n\t\"club\": 1\n}",
+							"raw": "{\n    \"name\": \"Eden Hazard\",\n    \"email\": \"testcllfp+1@gmail.com\",\n    \"birthday\": \"07-01-1991\",\n    \"position\": \"FORWARD\",\n    \"type\": \"PROFESSIONAL\",\n    \"salary\": 1500000,\n    \"club\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -343,7 +343,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"salary\": 2000,\n\t\"club\": null\n}",
+							"raw": "{\n\t\"name\": \"Javi Moreno\",\n\t\"email\": \"testcllfp+21@gmail.com\",\n\t\"salary\": 2000,\n\t\"club\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -411,7 +411,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"salary\": 200000\n}",
+							"raw": "{\n\t\"name\": \"Zinedine Zidane\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -445,7 +445,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Joaquín\",\n\t\"email\": \"testcllfp@gmail.com\",\n\t\"salary\": 1000,\n\t\"club\": 5\n}",
+							"raw": "{\n    \"name\": \"Zinedine Zidane\",\n    \"email\": \"testcllfp+7@gmail.com\",\n    \"salary\": 1000000,\n    \"club\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -42,7 +42,7 @@ class Player
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Assert\Email
      * @Groups({"player", "clubPlayer"})
