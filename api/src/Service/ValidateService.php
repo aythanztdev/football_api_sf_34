@@ -48,6 +48,15 @@ class ValidateService
             $errors = array_merge($errors, $errorsJuniorAge);
         }
 
+        $playerSalary = $player->getSalary();
+        if ($player->getType() === Player::TYPE_PROFESSIONAL && empty($playerSalary)) {
+            $errors[] = 'Salary must not be blank or 0';
+        }
+
+        if ($player->getType() === Player::TYPE_JUNIOR && !empty($playerSalary)) {
+            $errors[] = 'Salary must be blank or 0 for junior players';
+        }
+
         $errorsPlayersClub = $this->validatePlayerClubConditions($player, $lastClub);
         $errors = array_merge($errors, $errorsPlayersClub);
 
@@ -104,14 +113,6 @@ class ValidateService
         }
 
         $playerSalary = $player->getSalary();
-        if ($player->getType() === Player::TYPE_PROFESSIONAL && empty($playerSalary)) {
-            $errors[] = 'Salary must not be blank or 0';
-        }
-
-        if ($player->getType() === Player::TYPE_JUNIOR && !empty($playerSalary)) {
-            $errors[] = 'Salary must be blank or 0 for junior players';
-        }
-
         if (empty($playerSalary)) {
             $playerSalary = 0;
         }
@@ -119,9 +120,9 @@ class ValidateService
         $errorsSalaries = $this->validateSalaries($player->getClub(), $playerSalary);
         $errors = array_merge($errors, $errorsSalaries);
 
-        $totalProfessionalPlayers = $this->playerRepository->getTotalPlayers($player->getClub(), Player::TYPE_PROFESSIONAL);
-        if ($totalProfessionalPlayers >= Club::MAX_LIMIT_PLAYERS && $lastClub !== $player->getClub()) {
-            $errors[] = sprintf('Total players per team cannot be greater than %s', Club::MAX_LIMIT_PLAYERS);
+        if ($player->getType() === Player::TYPE_PROFESSIONAL) {
+            $errorsMaxPlayers = $this->validateMaxPlayersPerClub($player, $lastClub);
+            $errors = array_merge($errors, $errorsMaxPlayers);
         }
 
         return $errors;
@@ -195,6 +196,25 @@ class ValidateService
 
         if ($dateNow > $datePlayer) {
             $errors[] = sprintf('Junior player must not be more than %s years old', self::MAX_AGE_JUNIOR);
+        }
+
+        return $errors;
+    }
+
+    /**
+     * @param Player $player
+     * @param mixed $lastClub
+     *
+     * @return array
+     *
+     * @throws NonUniqueResultException
+     */
+    private function validateMaxPlayersPerClub(Player $player, $lastClub)
+    {
+        $errors = [];
+        $totalProfessionalPlayers = $this->playerRepository->getTotalPlayers($player->getClub(), Player::TYPE_PROFESSIONAL);
+        if ($totalProfessionalPlayers >= Club::MAX_LIMIT_PLAYERS && $lastClub !== $player->getClub()) {
+            $errors[] = sprintf('Total players per team cannot be greater than %s', Club::MAX_LIMIT_PLAYERS);
         }
 
         return $errors;

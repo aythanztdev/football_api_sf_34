@@ -113,7 +113,7 @@ class AppFixtures extends Fixture
                                 'name' => 'Tony Fuidias',
                                 'email' => 'testcllfp@gmail.com',
                                 'birthday' => '15-4-2001',
-                                'salary' => 15000,
+                                'salary' => 0,
                                 'type' => Player::TYPE_JUNIOR,
                                 'position' => Player::POSITION_GOALKEEPER
 
@@ -171,7 +171,7 @@ class AppFixtures extends Fixture
                                 'name' => 'Sergi Puig',
                                 'email' => 'testcllfp@gmail.com',
                                 'birthday' => '19-11-1998',
-                                'salary' => 200000,
+                                'salary' => 0,
                                 'type' => Player::TYPE_JUNIOR,
                                 'position' => Player::POSITION_GOALKEEPER
 
@@ -180,7 +180,7 @@ class AppFixtures extends Fixture
                                 'name' => 'Van Beijnen',
                                 'email' => 'testcllfp@gmail.com',
                                 'birthday' => '7-1-1999',
-                                'salary' => 150000,
+                                'salary' => 0,
                                 'type' => Player::TYPE_JUNIOR,
                                 'position' => Player::POSITION_DEFENDER
 

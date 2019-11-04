@@ -3,6 +3,7 @@
 namespace App\Tests\Service;
 
 use App\Entity\Club;
+use App\Repository\ClubRepository;
 use App\Repository\PlayerRepository;
 use App\Service\ValidateService;
 use Doctrine\ORM\NonUniqueResultException as NonUniqueResultExceptionAlias;
@@ -15,7 +16,7 @@ class ValidateServiceTest extends TestCase
      */
     public function testValidateSalariesOk()
     {
-        $validateService = new ValidateService($this->getMockedPlayerRepository(800000));
+        $validateService = new ValidateService($this->getMockedPlayerRepository(800000), $this->getMockedClubRepository());
 
         $club = $this->createClub();
 
@@ -28,7 +29,7 @@ class ValidateServiceTest extends TestCase
      */
     public function testValidateSalariesFail()
     {
-        $validateService = new ValidateService($this->getMockedPlayerRepository(800000));
+        $validateService = new ValidateService($this->getMockedPlayerRepository(800000), $this->getMockedClubRepository());
 
         $club = $this->createClub();
 
@@ -41,7 +42,12 @@ class ValidateServiceTest extends TestCase
         $repositoryMock = $this->getMockBuilder(PlayerRepository::class)->disableOriginalConstructor()->getMock();
         $repositoryMock->expects($this->once())->method('getTotalSalaries')->willReturn($salary);
         return $repositoryMock;
+    }
 
+    private function getMockedClubRepository()
+    {
+        $repositoryMock = $this->getMockBuilder(ClubRepository::class)->disableOriginalConstructor()->getMock();
+        return $repositoryMock;
     }
 
     private function createClub()

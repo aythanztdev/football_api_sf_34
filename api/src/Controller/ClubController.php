@@ -97,7 +97,7 @@ class ClubController extends AbstractFOSRestController
         $this->clubService->persistAndSave($form->getData());
 
         $clubSerialized = $this->serializer->serialize($form->getData(), 'json', ['groups' => ['club']]);
-        return new JsonResponse($clubSerialized, Response::HTTP_OK, [], true);
+        return new JsonResponse($clubSerialized, Response::HTTP_CREATED, [], true);
     }
 
     /**
