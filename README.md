@@ -65,6 +65,7 @@ For executing tests.
 docker exec -it lfp-api-php /bin/bash
 cd api
 ./bin/phpunit
+exit
 ```
 
 #

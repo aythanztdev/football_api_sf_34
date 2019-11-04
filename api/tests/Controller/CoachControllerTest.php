@@ -44,7 +44,7 @@ class CoachControllerTest extends WebTestCase
         $this->assertArrayHasKey('name', $json);
         $this->assertEquals('Zinedine Zidane', $json['name']);
         $this->assertArrayHasKey('email', $json);
-        $this->assertEquals('testcllfp@gmail.com', $json['email']);
+        $this->assertEquals('testcllfp+7@gmail.com', $json['email']);
         $this->assertArrayHasKey('salary', $json);
         $this->assertEquals(1000000, $json['salary']);
         $this->assertArrayHasKey('club', $json);
@@ -56,7 +56,7 @@ class CoachControllerTest extends WebTestCase
         $coachArray =
             [
                 'name' => 'Javi Moreno',
-                'email' => 'testcllfp@gmail.com',
+                'email' => 'testcllfp+21@gmail.com',
                 'salary' => 1000,
                 'club' => 1
             ];
@@ -72,7 +72,7 @@ class CoachControllerTest extends WebTestCase
         $this->assertArrayHasKey('name', $json);
         $this->assertEquals('Javi Moreno', $json['name']);
         $this->assertArrayHasKey('email', $json);
-        $this->assertEquals('testcllfp@gmail.com', $json['email']);
+        $this->assertEquals('testcllfp+21@gmail.com', $json['email']);
         $this->assertArrayHasKey('salary', $json);
         $this->assertEquals(1000, $json['salary']);
         $this->assertArrayHasKey('club', $json);

@@ -75,7 +75,7 @@ class AppFixtures extends Fixture
                         'players' => [
                             [
                                 'name' => 'Eden Hazard',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+1@gmail.com',
                                 'birthday' => '7-1-1991',
                                 'salary' => 1500000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -84,7 +84,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'James Rodríguez',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+2@gmail.com',
                                 'birthday' => '12-6-1991',
                                 'salary' => 2000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -93,7 +93,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Gareth Bale',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+3@gmail.com',
                                 'birthday' => '16-7-1989',
                                 'salary' => 3000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -102,7 +102,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Karim Benzema',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+4@gmail.com',
                                 'birthday' => '19-12-1987',
                                 'salary' => 2000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -111,7 +111,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Tony Fuidias',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+5@gmail.com',
                                 'birthday' => '15-4-2001',
                                 'salary' => 0,
                                 'type' => Player::TYPE_JUNIOR,
@@ -120,7 +120,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Santos',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+6@gmail.com',
                                 'birthday' => '3-1-2001',
                                 'salary' => 0,
                                 'type' => Player::TYPE_JUNIOR,
@@ -130,7 +130,7 @@ class AppFixtures extends Fixture
                         ],
                         'coach' => [
                             'name' => 'Zinedine Zidane',
-                            'email' => 'testcllfp@gmail.com',
+                            'email' => 'testcllfp+7@gmail.com',
                             'salary' => 1000000
 
                         ]
@@ -142,7 +142,7 @@ class AppFixtures extends Fixture
                         'players' => [
                             [
                                 'name' => 'Lionel Messi',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+8@gmail.com',
                                 'birthday' => '24-1-1987',
                                 'salary' => 5000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -151,7 +151,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Ivan Rakitić',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+9@gmail.com',
                                 'birthday' => '10-3-1988',
                                 'salary' => 2000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -160,7 +160,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Gerard Piqué',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+10@gmail.com',
                                 'birthday' => '2-2-1988',
                                 'salary' => 4000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -169,7 +169,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Sergi Puig',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+11@gmail.com',
                                 'birthday' => '19-11-1998',
                                 'salary' => 0,
                                 'type' => Player::TYPE_JUNIOR,
@@ -178,7 +178,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Van Beijnen',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+12@gmail.com',
                                 'birthday' => '7-1-1999',
                                 'salary' => 0,
                                 'type' => Player::TYPE_JUNIOR,
@@ -188,7 +188,7 @@ class AppFixtures extends Fixture
                         ],
                         'coach' => [
                             'name' => 'Ernesto Valverde',
-                            'email' => 'testcllfp@gmail.com',
+                            'email' => 'testcllfp+13@gmail.com',
                             'salary' => 1000000
                         ]
                     ],
@@ -199,7 +199,7 @@ class AppFixtures extends Fixture
                         'players' => [
                             [
                                 'name' => 'Marcos Llorente',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+14@gmail.com',
                                 'birthday' => '30-1-1995',
                                 'salary' => 900000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -208,7 +208,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Jan Oblak',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+15@gmail.com',
                                 'birthday' => '7-1-1993',
                                 'salary' => 1000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -217,7 +217,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Santiago Arias',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+16@gmail.com',
                                 'birthday' => '13-1-1992',
                                 'salary' => 800000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -226,7 +226,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Vitolo Machín',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+17@gmail.com',
                                 'birthday' => '11-2-1989',
                                 'salary' => 1500000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -235,7 +235,7 @@ class AppFixtures extends Fixture
                             ],
                             [
                                 'name' => 'Manuel Sánchez',
-                                'email' => 'testcllfp@gmail.com',
+                                'email' => 'testcllfp+18@gmail.com',
                                 'birthday' => '20-8-2000',
                                 'salary' => 1000000,
                                 'type' => Player::TYPE_PROFESSIONAL,
@@ -245,7 +245,7 @@ class AppFixtures extends Fixture
                         ],
                         'coach' => [
                             'name' => 'Diego Simeone',
-                            'email' => 'testcllfp@gmail.com',
+                            'email' => 'testcllf+19@gmail.com',
                             'salary' => 2000000
                         ]
                     ]

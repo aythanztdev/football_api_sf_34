@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Traits\TimeTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -11,6 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="player")
  * @ORM\Entity(repositoryClass="App\Repository\PlayerRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity("email")
  */
 class Player
 {
@@ -40,7 +42,7 @@ class Player
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank
      * @Assert\Email
      * @Groups({"player", "clubPlayer"})

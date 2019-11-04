@@ -47,7 +47,7 @@ class PlayerControllerTest extends WebTestCase
         $this->assertArrayHasKey('name', $json);
         $this->assertEquals('Eden Hazard', $json['name']);
         $this->assertArrayHasKey('email', $json);
-        $this->assertEquals('testcllfp@gmail.com', $json['email']);
+        $this->assertEquals('testcllfp+1@gmail.com', $json['email']);
         $this->assertArrayHasKey('birthday', $json);
         $this->assertEquals('07-01-1991', $json['birthday']);
         $this->assertArrayHasKey('position', $json);
@@ -65,7 +65,7 @@ class PlayerControllerTest extends WebTestCase
         $playerArray =
                         [
                             'name' =>  'Sergio Ramos',
-                            'email' => 'testcllfp@gmail.com',
+                            'email' => 'testcllfp+20@gmail.com',
                             'birthday' => '30-03-1986',
                             'position' => 'DEFENDER',
                             'type' => 'PROFESSIONAL',
@@ -84,7 +84,7 @@ class PlayerControllerTest extends WebTestCase
         $this->assertArrayHasKey('name', $json);
         $this->assertEquals('Sergio Ramos', $json['name']);
         $this->assertArrayHasKey('email', $json);
-        $this->assertEquals('testcllfp@gmail.com', $json['email']);
+        $this->assertEquals('testcllfp+20@gmail.com', $json['email']);
         $this->assertArrayHasKey('birthday', $json);
         $this->assertEquals('30-03-1986', $json['birthday']);
         $this->assertArrayHasKey('position', $json);
