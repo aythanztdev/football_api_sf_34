@@ -90,7 +90,7 @@ class ValidateService
 
         $clubWithThisShield =  $this->clubRepository->findOneBy(['shield' => $club->getShield()]);
         if ($clubWithThisShield instanceof Club && $clubWithThisShield !== $club) {
-            $errors[] = 'This shield belong to other club already.';
+            $errors[] = 'This shield belong to other club.';
         }
 
         return $errors;
