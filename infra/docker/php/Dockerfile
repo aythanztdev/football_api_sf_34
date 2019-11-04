@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 RUN ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo "UTC" > /etc/timezone
 RUN apt-get update && apt-get upgrade -y && apt-get install -y apt-utils vim curl wget git unzip
-RUN apt-get update && apt-get install -y php-fpm php-mysql php-xml php-curl php-zip php-mbstring php-xdebug
+RUN apt-get update && apt-get install -y php-fpm php-mysql php-xml php-curl php-zip php-mbstring php-xdebug php-sqlite3
 
 ADD etc/php/7.2/fpm/conf.d/ /etc/php/7.2/fpm/conf.d/
 ADD etc/php/7.2/cli/conf.d/ /etc/php/7.2/cli/conf.d/
