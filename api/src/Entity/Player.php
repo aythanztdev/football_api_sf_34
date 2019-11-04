@@ -57,7 +57,7 @@ class Player
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Assert\Choice(callback="getPositions")
+     * @Assert\Choice(callback="getPositions", strict=true)
      * @Groups({"player", "clubPlayer"})
      */
     private $position;
@@ -65,7 +65,7 @@ class Player
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Assert\Choice(callback="getTypes")
+     * @Assert\Choice(callback="getTypes", strict=true)
      * @Groups({"player", "clubPlayer"})
      */
     private $type;
