@@ -60,6 +60,15 @@ docker exec -it lfp-api-php php api/bin/console doctrine:fixtures:load
 
 #
 
+For executing tests.
+```
+docker exec -it lfp-api-php /bin/bash
+cd api
+./bin/phpunit
+```
+
+#
+
 You can show some data visiting:
 ```
 http://lfp-api.loc/api/clubs
@@ -67,8 +76,8 @@ http://lfp-api.loc/api/clubs/1
 http://lfp-api.loc/api/clubs/1/players
 http://lfp-api.loc/api/players
 http://lfp-api.loc/api/players/1
-http://lfp-api.loc/api/coachs
-http://lfp-api.loc/api/coachs/1
+http://lfp-api.loc/api/coaches
+http://lfp-api.loc/api/coaches/1
 ```
 
 #
